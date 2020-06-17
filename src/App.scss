@@ -1,0 +1,91 @@
+
+.searchForm {
+  margin-left: auto;
+}
+.ProdList {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  > div {
+    height: 380px;
+    width: calc(320px - 2rem);
+    padding: 1rem;
+
+    .sale {
+      position: absolute;
+      color: #f95b5b;
+      font-weight: 700;
+    }
+    img {
+      padding: calc(60px - 2rem)
+    }
+    .divPrice {
+      padding: .7rem;
+
+      s {
+        font-size: .9rem;
+        margin-left: 1rem;
+      }
+    }
+  }
+}
+
+.product-form {
+  padding: 2rem;
+}
+
+.mui-btn {
+  box-shadow: 0 0 2px rgba(0,0,0,.12),0 2px 2px rgba(0,0,0,.2);
+  font-weight: 500;
+  color: #fff;
+  background: #383;
+  text-transform: uppercase;
+  transition: all .2s ease-in-out;
+  height: 36px;
+  padding: 0 26px;
+  margin: 6px 0;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  touch-action: manipulation;
+  line-height: 36px;
+  vertical-align: middle;
+  white-space: nowrap;
+  user-select: none;
+  font-size: 14px;
+  letter-spacing: .03em;
+  position: relative;
+  overflow: hidden;
+}
+
+.categ_banner {
+  height: 20vw;
+  min-height: 150px;
+  // background-position: center;
+  display: grid;
+  align-items: center;
+  color: #fff;
+  background: linear-gradient(217deg, #69a, #efd199 70.71%);
+
+  svg {
+    height: 20vw;
+    min-height: 150px;
+    position: absolute;
+    width: 100%;
+  }
+
+  h1 {
+    text-transform: uppercase;
+    text-align: center;
+    z-index: 0;
+  }
+}
+
+.btn-primary {
+  padding: 1rem;
+  display: flex;
+  margin: auto;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 700;
+}
