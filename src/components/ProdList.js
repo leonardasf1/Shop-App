@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Loader } from './Loader'
 import {
-  setProds,
-  setMoreProds,
+  setLastProds,
+  setMoreProds } from '../redux/prodsReducer'
+import {
   showLoader,
   hideLoader,
   showAlert } from '../redux/actions'
@@ -13,7 +14,7 @@ export default function ProdList(props) {
 
   const dispatch = useDispatch()
 
-  useEffect(() => { fetchProds(props.request, setProds) },[props.request])
+  useEffect(() => { fetchProds(props.request, setLastProds) },[props.request])
 
   function fetchProds(request, method) {
     dispatch(showLoader())
@@ -27,7 +28,7 @@ export default function ProdList(props) {
     })
   }
 
-  const list = props.prods.map( product => 
+  const list = props.lastProds.map( product => 
       <div key={product.id}>
             <div className="sale">{product.sale && `-${product.sale}%`}</div>
             <a href={`#product/${product.id}`}>
@@ -49,11 +50,11 @@ export default function ProdList(props) {
       {list}
     </div>
     {props.loading && <Loader />}
-    {props.prods.length &&
-    props.prods[0].index > 1 &&
+    {props.lastProds.length &&
+    props.lastProds[0].index > 1 &&
     <button
         className="btn-primary"
-        onClick={() => fetchProds(`orderBy="index"&startAt=${props.prods[0].index - 3}&endAt=${props.prods[0].index - 1}`, setMoreProds)}
+        onClick={() => fetchProds(`orderBy="index"&startAt=${props.lastProds[0].index - 3}&endAt=${props.lastProds[0].index - 1}`, setMoreProds)}
     >Ещё</button>}
     </>
   )

@@ -53,10 +53,10 @@ export default function Header(props) {
           </nav>
 
           {props.cartProds.length > 0 &&
-            <li><a href="#order" className="whiteCircle">
+            <span><a href="#order" className="whiteCircle">
             <span role="img" aria-label="корзина">&#128722;</span> 
             <span className="blackCircle"> {props.cartProds.length} </span>
-            </a></li>
+            </a></span>
           }
           <a className="cd-nav-trigger">Menu<span></span></a>
           

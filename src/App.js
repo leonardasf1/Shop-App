@@ -24,8 +24,11 @@ function App() {
 
   useEffect(() => { dispatch(routing()) },[])
 
-  const prods = useSelector(
-    state => state.prods.fetchedProds
+  const lastProds = useSelector(
+    state => state.prods.lastProds
+  )
+  const separateProds = useSelector(
+    state => state.prods.separateProds
   )
   const loading = useSelector(
     state => state.app.loading
@@ -37,10 +40,10 @@ function App() {
     state => state.app.auth
   )
   const orderInfo = useSelector(
-    state => state.prods.orderInfo
+    state => state.cart.orderInfo
   )
   const cartProds = useSelector(
-    state => state.prods.cartProds
+    state => state.cart.cartProds
   )
   const orders = useSelector(
     state => state.app.orders
@@ -59,22 +62,26 @@ function App() {
           <ProdList
             loading={loading}
             request={`orderBy="index"&limitToLast=3`}
-            prods={prods} />
+            lastProds={lastProds} />
         }
         { route === `#categ/${window.location.hash.split("#categ/")[1]}` &&
-        prods.length > 0 &&
+        lastProds.length > 0 &&
         <>
           <Categoria />
           <ProdList
             loading={loading}
             request={`orderBy="categ"&equalTo="${window.location.hash.split("#categ/")[1]}"&limitToLast=3`}
-            prods={prods} />
+            lastProds={lastProds} />
         </>
         }
         { route === `#product/${window.location.hash.split("#product/")[1]}` &&
-        prods.length > 0 &&
+        lastProds.length > 0 &&
           <ProdCard
-            prods={prods}
+            product={
+              lastProds.find(i => i.id === window.location.hash.split("#product/")[1]) ||
+              separateProds.find(i => i.id === window.location.hash.split("#product/")[1])
+            }
+            productId={window.location.hash.split("#product/")[1]}
             cartProds={cartProds} />
         }
         { (route === '#auth' ||
@@ -90,7 +97,7 @@ function App() {
           <Order
             auth={auth}
             cartProds={cartProds}
-            prods={prods}
+            // lastProds={lastProds}
             orderInfo={orderInfo}
           />
         }
@@ -104,14 +111,14 @@ function App() {
           <AdminProd
             auth={auth}
             prod={false}
-            newIndex={prods[prods.length - 1].index + 1}
+            newIndex={lastProds[lastProds.length - 1].index + 1}
           />
         }
         { route === `#admin/${window.location.hash.split("#admin/")[1]}` &&
         auth.email !== 'admin' && //изменить после настройки
           <AdminProd
             auth={auth}
-            prod={prods.find(i => i.id === window.location.hash.split("#admin/")[1])}
+            prod={lastProds.find(i => i.id === window.location.hash.split("#admin/")[1])}
           />
         }
         { route === `#orderList` &&

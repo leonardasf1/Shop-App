@@ -1,5 +1,4 @@
-import { 
-    FETCH_PRODS, MORE_PRODS,
+import {
     CART_ADD, CART_DEL,
     CART_PLUS, CART_MINUS, CART_CHANGE,
     SHOW_LOADER, HIDE_LOADER,
@@ -32,24 +31,6 @@ export function showAlert(text) {
 export function hideAlert() {
     return {
         type: HIDE_ALERT
-    }
-}
-
-export function setProds(json) {
-    return {
-        type: FETCH_PRODS,
-        payload: Object.keys(json).map(
-            key => ({ ...json[key], id: key })
-        )
-    }
-}
-
-export function setMoreProds(json) {
-    return {
-        type: MORE_PRODS,
-        payload: Object.keys(json).map(
-            key => ({ ...json[key], id: key })
-        )
     }
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
 import './style.scss'
 import ProdConnected from '../ProdConnected';
@@ -7,21 +7,15 @@ import {
     setSpecs,
     clearChoice,
     setColors,
-    setProdForCart
-} from './script';
-import { Rest } from '../../modules/fetch';
+    setProdForCart,
+    fetchSeparateProd } from './script';
 
 export default function ProdCard(props) {
     const dispatch = useDispatch()
 
-    let productId = window.location.hash.split("#product/")[1]
-    
-    let product = props.prods.find(i => i.id === productId) ||
-        async function() {
-            Rest.getProductById(productId)
-            .then(json => product = json)
-        } ()
-    
+    useEffect(() => { fetchSeparateProd(dispatch, props.productId) },[props.productId])
+
+    let product = props.product
     let prodColor = '0'
     let prodSize = 'не выбран'
 
@@ -30,7 +24,7 @@ export default function ProdCard(props) {
             <div className="prodCard_block1">
 
             {props.authEmail === 'admin' &&
-            <a href={'#admin/' + productId} className="error">Изменить</a>
+            <a href={'#admin/' + product.id} className="error">Изменить</a>
             } {/* исправить */}
 
                 <div className="prodCard_block1_img">

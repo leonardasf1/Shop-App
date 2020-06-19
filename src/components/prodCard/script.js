@@ -1,4 +1,7 @@
 import { addToCart } from "../../redux/actions";
+import { Rest } from '../../modules/fetch';
+import { showLoader, showAlert, hideLoader } from '../../redux/actions';
+import { setSeparateProds } from '../../redux/prodsReducer';
 
 export function clearChoice(choice) {
     document.querySelectorAll(choice).forEach(i => {
@@ -40,6 +43,19 @@ export function setProdForCart(dispatch, product, cartProds, color, size) {
     })
     dispatch(addToCart(prodForCart, cartProds))
 }
+
+export function fetchSeparateProd(dispatch, productId) {
+    dispatch(showLoader())
+    Rest.getProductById(productId)
+    .then(json => {
+        if (json.error) dispatch(showAlert(json.error))
+        else {
+          dispatch(hideLoader())
+          dispatch(setSeparateProds(json))
+        }
+    })
+}
+  
 // export function setProdSize(e, prodSize) {
 //     prodSize = e.target.textContent
 //     clearChoice('.size > div')
