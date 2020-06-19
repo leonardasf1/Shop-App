@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SearchBar from '../SearchBar'
+// import SearchBar from '../SearchBar'
 import CatalogBar from '../CatalogBar'
 import { logout } from '../auth/Auth'
 import './style.scss'
@@ -45,7 +45,7 @@ export default function Header(props) {
             {props.authEmail === 'admin' &&
               <li><a href="#orderList">Заказы</a></li>
             } {/* исправить */}
-            {props.authEmail !== 'admin' &&
+            {props.authEmail === 'admin' &&
               <li><a href="#admin">Добавить новый товар</a></li>
             } {/* исправить */}
 

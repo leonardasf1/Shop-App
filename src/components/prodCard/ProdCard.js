@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import './style.scss'
 import ProdConnected from '../ProdConnected';
 import Rewiews from '../Rewiews';
-// import { addToCart } from '../../redux/actions';
 import {
     setSpecs,
     clearChoice,
@@ -30,7 +29,7 @@ export default function ProdCard(props) {
         <div className="prodCard">
             <div className="prodCard_block1">
 
-            {props.authEmail !== 'admin' &&
+            {props.authEmail === 'admin' &&
             <a href={'#admin/' + productId} className="error">Изменить</a>
             } {/* исправить */}
 
