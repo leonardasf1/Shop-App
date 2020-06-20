@@ -88,7 +88,7 @@ export default function ProdCard(props) {
                             //     ))
                             }}
                         ><b>купить</b></button>
-                        <span>В наличии <div className="availableCount"></div></span>
+                        <div className="availableCount">В наличии</div>
                     </div>
                 </div>
             </div>

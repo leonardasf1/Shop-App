@@ -15,7 +15,7 @@
 
         > .sale {
           position: absolute;
-          color: rgb(249, 91, 91);
+          color: var(--red);
           font-size: 20px;
           font-weight: 700;
         }
@@ -26,15 +26,11 @@
         }
       }
       &_info {
-        max-width: 500px;
+        width: 500px;
         min-width: 300px;
+        
         span {
           font-size: .8rem;
-
-          .availableCount {
-            display: inline-grid;
-            padding: 1rem;
-          }
         }
         .divImg54 {
           > * {
@@ -66,10 +62,15 @@
         .buy {
           margin: 1rem;
           padding: .5rem 2rem;
-          background: rgb(249, 91, 91);
+          background: var(--red);
           font-size: 1.2rem;
           text-transform: uppercase;
           color: #fff;
+        }
+        .availableCount {
+          display: inline-grid;
+          padding: 1rem 0 1rem 1rem;
+          color: #00adeec0;
         }
       }
     }

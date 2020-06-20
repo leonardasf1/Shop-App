@@ -23,7 +23,7 @@
             }
             .img {
                 float: left;
-                margin: 0 40px 35px 0;
+                margin: 0 40px 42px 0;
             }
             .article {
                 font-size: 12px;
@@ -51,14 +51,20 @@
             .removeIcon {
                 float: right;
                 font-size: 25px;
-                color: #df4b41;
+                color: var(--red);
                 line-height: 8px;
                 font-weight: 300;
                 padding: 0;
             }
+            .available {
+                padding: 16px 0 16px 16px;
+                display: inline-block;
+                font-size: .8rem;
+                color: #00adeec0;
+            }
             .price {
                 float: right;
-                padding: 10px 10px;
+                padding: 13px 0 13px 13px;
             }
         }
     } 
@@ -80,7 +86,7 @@
                 transition: color .15s ease-out;
 
                 &:hover {
-                    color: #e00;
+                    color: var(--red);
                     text-shadow: none;
                 }
             }

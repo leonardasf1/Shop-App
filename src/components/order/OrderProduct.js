@@ -47,6 +47,7 @@ export default function OrderProduct(props) {
                         dispatch(countPlus(props.product.id))}
                 >+</div>
             </div>
+            <span className="available">Доступно {props.product.availableCount}</span>
             <span className="price">
                 {(product['price@' + color] || product.price) *
                 (100 - (product['sale@' + color] || product.sale || 0)) / 100} руб
