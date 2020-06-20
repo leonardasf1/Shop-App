@@ -27,13 +27,14 @@ export function setColors(product) {
     return colors
 }
 
-export function setProdForCart(dispatch, product, cartProds, color, size) {
+export function setProdForCart(dispatch, product, cartProds, color, size, availableCount) {
     let prodForCart = {
         "id": product.id + "@" + color + "@" + size,
         "count": 1,
         product,
         color,
-        size
+        size,
+        availableCount
     }
     cartProds && cartProds.map(i => {
         if (i.id === prodForCart.id) {

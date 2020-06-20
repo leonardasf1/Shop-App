@@ -30,6 +30,11 @@
         min-width: 300px;
         span {
           font-size: .8rem;
+
+          .availableCount {
+            display: inline-grid;
+            padding: 1rem;
+          }
         }
         .divImg54 {
           > * {
@@ -87,4 +92,5 @@ s {
   color: grey;
   font-weight: 700;
   font-size: 20px;
+  display: table-cell;
 }

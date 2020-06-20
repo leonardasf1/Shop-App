@@ -18,6 +18,7 @@ export default function ProdCard(props) {
     let product = props.product || {}
     let prodColor = '0'
     let prodSize = 'не выбран'
+    let availableCount = 0
 
     let page = (
         <div className="prodCard">
@@ -63,6 +64,8 @@ export default function ProdCard(props) {
 {product.sale ? product.price * (100 - product.sale) / 100 : product.price}
                         </b>
                         <sup> руб</sup>
+                        <s>{product.sale && product.price + " ₽"}</s>
+
                         </div>
                         <button
                         className="buy"
@@ -74,7 +77,8 @@ export default function ProdCard(props) {
                                 product,
                                 props.cartProds,
                                 prodColor,
-                                prodSize
+                                prodSize,
+                                availableCount
                                 )
                             // dispatch(addToCart(
                             //     product,
@@ -84,8 +88,8 @@ export default function ProdCard(props) {
                             //     ))
                             }}
                         ><b>купить</b></button>
+                        <span>В наличии <div className="availableCount"></div></span>
                     </div>
-                    <s>{product.sale && product.price + " ₽"}</s>
                 </div>
             </div>
 
@@ -117,6 +121,17 @@ export default function ProdCard(props) {
         prodSize = e.target.textContent
         clearChoice('.size > div')
         e.target.style.borderColor = "#00adee"
+        availableCount = 0
+        let shopsCount = []
+        product['size@' + prodColor].split(',').map(i => {
+            if (i.split('-')[0].trim() === prodSize) {
+                shopsCount.push(
+                    `<div>Магазин №${i.split('-')[1].trim()} : ${i.split('-')[2].trim()}</div>`
+                )
+                availableCount += +(i.split('-')[2].trim())
+            }
+        })
+        document.querySelector('.availableCount').innerHTML = shopsCount.join('')
     }
     
     function setProdColor(e, color, colorIndex) {
@@ -124,6 +139,7 @@ export default function ProdCard(props) {
         clearChoice('.divImg54 > img')
         e.target.style.borderColor = "#00adee"
         document.querySelector('.color').innerText = color
+        document.querySelector('.availableCount').innerText = ''
         
         document.querySelector('.price').innerText =
         (product['price@' + colorIndex] || product.price) *
@@ -143,4 +159,3 @@ export default function ProdCard(props) {
         });
     }
 }
-//наличие
