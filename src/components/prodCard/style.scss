@@ -38,6 +38,7 @@
             margin: 1rem;
             border: solid 2px rgba(0,0,0,0);
             transition: .2s ease-in;
+            cursor: pointer;
           }
         }
         .size > div {
@@ -47,6 +48,7 @@
           align-items: center;
           justify-content: center;
           border: solid 2px rgba(0, 0, 0, 0);
+          cursor: pointer;
         }
         .divPrice {
           font-weight: 700;

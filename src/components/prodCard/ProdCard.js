@@ -15,7 +15,7 @@ export default function ProdCard(props) {
 
     useEffect(() => { fetchSeparateProd(dispatch, props.productId) },[props.productId])
 
-    let product = props.product
+    let product = props.product || {}
     let prodColor = '0'
     let prodSize = 'не выбран'
 
@@ -127,7 +127,7 @@ export default function ProdCard(props) {
         
         document.querySelector('.price').innerText =
         (product['price@' + colorIndex] || product.price) *
-        (100 - (product['sale@' + colorIndex] || product.sale)) / 100
+        (100 - (product['sale@' + colorIndex] || product.sale || 0)) / 100
     
         let sizes = []
         let prev = ''

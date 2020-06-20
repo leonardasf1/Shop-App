@@ -50,6 +50,10 @@ header {
 
   .cd-main-nav-wrapper {
     margin-left: auto;
+
+    ul {
+      padding-inline-start: 0;
+    }
   }
 
   .cd-nav-trigger {
