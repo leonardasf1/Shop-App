@@ -1,10 +1,7 @@
 import {
-    CART_ADD, CART_DEL,
-    CART_PLUS, CART_MINUS, CART_CHANGE,
     SHOW_LOADER, HIDE_LOADER,
     SHOW_ALERT, HIDE_ALERT,
     AUTH_EMAIL,
-    ORDER_INFO,
     FETCH_ORDERS} from "./types";
 
 export function showLoader() {
@@ -41,48 +38,6 @@ export function hideAlert() {
 //     }
 // }
 
-export function addToCart(prodForCart, cartProds) {
-    if ( prodForCart.id ) {
-        return {
-            type: CART_ADD,
-            payload: [...cartProds, prodForCart ]
-        }
-    } else {
-        return {
-            type: CART_ADD,
-            payload: cartProds
-        }
-    }
-}
-
-export function changeProdCount(id, value) {
-    return {
-        type: CART_CHANGE,
-        payload: [id, value]
-    }
-}
-
-export function countPlus(id) {
-    return {
-        type: CART_PLUS,
-        payload: id
-    }
-}
-
-export function countMinus(id) {
-    return {
-        type: CART_MINUS,
-        payload: id
-    }
-}
-
-export function deleteFromCart(product) {
-    return {
-        type: CART_DEL,
-        payload: product
-    }
-}
-
 export function authAction(authObj) {
     return {
         type: AUTH_EMAIL,
@@ -94,13 +49,6 @@ export function deleteAuth() {
     return {
         type: AUTH_EMAIL,
         payload: false
-    }
-}
-
-export function saveOrderInfo(e) {
-    return {
-        type: ORDER_INFO,
-        payload: [e.target.name, e.target.value]
     }
 }
 

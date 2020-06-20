@@ -1,4 +1,5 @@
 import { Rest } from "../../modules/fetch"
+import { saveOrderInfo } from '../../redux/cartReducer'
 
 export function setSum(sum, product) {
     sum += (
@@ -53,4 +54,14 @@ function handleError(inputs, error) {
     }
     inputs.postOrder.innerText = error
     inputs.postOrder.style.color = 'red'
+}
+
+export function listenForms(dispatch) {
+    if (document.forms.length)
+    for (let i=0; i<5; i++) {
+        document.forms.tosend.elements[i]
+        .addEventListener('change', (e) => {
+            dispatch(saveOrderInfo(e))
+        })
+    }
 }

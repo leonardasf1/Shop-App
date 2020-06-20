@@ -1,4 +1,4 @@
-import { addToCart } from "../../redux/actions";
+import { addToCart } from "../../redux/cartReducer";
 import { Rest } from '../../modules/fetch';
 import { showLoader, showAlert, hideLoader } from '../../redux/actions';
 import { setSeparateProds } from '../../redux/prodsReducer';

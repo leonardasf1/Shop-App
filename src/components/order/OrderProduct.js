@@ -5,7 +5,7 @@ import {
     changeProdCount,
     countPlus,
     countMinus
-} from '../../redux/actions'
+} from '../../redux/cartReducer'
 
 export default function OrderProduct(props) {
     const dispatch = useDispatch()
@@ -38,7 +38,6 @@ export default function OrderProduct(props) {
                 <input
                     className="count"
                     type="text" maxLength="3"
-                    // defaultValue={props.product.count}
                     value={props.product.count}
                     onChange={(e) => 
                         dispatch(changeProdCount(props.product.id, e.target.value))}

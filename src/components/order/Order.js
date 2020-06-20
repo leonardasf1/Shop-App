@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { saveOrderInfo } from '../../redux/actions'
 import './style.scss'
 import OrderProduct from './OrderProduct'
-import { handleOrder, setSum } from './script'
+import { handleOrder, setSum, listenForms } from './script'
 
 export default function Order(props) {
     const dispatch = useDispatch()
@@ -99,12 +98,7 @@ export default function Order(props) {
 
     useEffect(() => {
         window.scroll(0, 0)
-        if (document.forms.length)
-            for (let i=0; i<5; i++) {
-                document.forms.tosend.elements[i]
-                .addEventListener('change',
-                (e) => dispatch(saveOrderInfo(e)))
-            }
+        listenForms(dispatch, props.orderInfo)
     }, [])
     
     return page

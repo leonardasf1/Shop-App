@@ -1,7 +1,9 @@
-import {
-    CART_ADD, CART_DEL,
-    CART_PLUS, CART_MINUS, CART_CHANGE,
-    ORDER_INFO } from "./types"
+const CART_ADD = 'CART/CART_ADD'
+const CART_DEL = 'CART/CART_DEL'
+const CART_PLUS = 'CART/CART_PLUS'
+const CART_MINUS = 'CART/CART_MINUS'
+const CART_CHANGE = 'CART/CART_CHANGE'
+const ORDER_INFO = 'CART/ORDER_INFO'
 
 const initialState = {
     cartProds: sessionStorage.cartProds ?
@@ -42,8 +44,8 @@ export const cartReducer = (state = initialState, action) => {
             return { ...state,
                 cartProds: state.cartProds
                 .map( elem => {
-                    if (elem.id === action.payload[0] &&
-                        +action.payload[1] >= 0) {
+                    if ( elem.id === action.payload[0] &&
+                        +action.payload[1] >= 0 ) {
                         elem.count = +action.payload[1]
                     }
                     return elem
@@ -56,11 +58,57 @@ export const cartReducer = (state = initialState, action) => {
 
             sessionStorage.setItem(
                 "orderInfo", JSON.stringify(Array(info))
-            ) // убрать в другое место
+            ) // уже пробовал убрать
             return { ...state,
                 orderInfo: Array(info)
             }
 
         default: return state
+    }
+}
+
+// ACTIONS -----------------------------------------------------
+
+export function addToCart(prodForCart, cartProds) {
+    if ( prodForCart.id ) {
+        return {
+            type: CART_ADD,
+            payload: [...cartProds, prodForCart ]
+        }
+    } else {
+        return {
+            type: CART_ADD,
+            payload: cartProds
+        }
+    }
+}
+export function changeProdCount(id, value) {
+    return {
+        type: CART_CHANGE,
+        payload: [id, value]
+    }
+}
+export function countPlus(id) {
+    return {
+        type: CART_PLUS,
+        payload: id
+    }
+}
+export function countMinus(id) {
+    return {
+        type: CART_MINUS,
+        payload: id
+    }
+}
+export function deleteFromCart(product) {
+    return {
+        type: CART_DEL,
+        payload: product
+    }
+}
+export function saveOrderInfo(e) {
+    return {
+        type: ORDER_INFO,
+        payload: [e.target.name, e.target.value]
     }
 }
