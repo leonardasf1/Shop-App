@@ -93,3 +93,15 @@
         }
     }
 }
+
+.order-emptyCart {
+    padding: 2rem;
+    text-align: center;
+
+    span {
+        font-size: 10rem;
+    }
+    h3 {
+        margin-inline-start: 0;
+    }
+}

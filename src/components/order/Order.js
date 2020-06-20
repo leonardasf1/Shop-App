@@ -93,7 +93,12 @@ export default function Order(props) {
     </div>
     )
 
-    let page2 = (<h3>В вашей корзине нет товаров</h3>)
+    let page2 = (
+        <div className="order-emptyCart">
+            <span>&#128722;</span>
+            <h3>В вашей корзине нет товаров</h3>
+        </div>
+    )
     let page = props.cartProds.length ? page1 : page2
 
     useEffect(() => {
