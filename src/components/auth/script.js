@@ -46,7 +46,7 @@ function errorHandler(item, text) {
       item.previousElementSibling.innerText = ''
     })
 }
-  
+// PASSWORD_LOGIN_DISABLED
 export function signupFormHandler(e) {
     e.preventDefault()
     let name = e.target[0]

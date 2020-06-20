@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // import SearchBar from '../SearchBar'
 import CatalogBar from '../CatalogBar'
@@ -6,7 +6,9 @@ import { logout } from '../auth/Auth'
 import './style.scss'
 
 export default function Header(props) {
-
+  useEffect(() => {
+    setHeader()
+  },[])
   sessionStorage.setItem(
       "cartProds", JSON.stringify(props.cartProds)
   )
@@ -65,4 +67,33 @@ export default function Header(props) {
         </div>
       </header>
     )
+}
+
+function setHeader() {
+	function q(i) { return document.querySelector(i) }
+
+	//mobile version - open/close navigation
+	q('.cd-nav-trigger').addEventListener('click', function(e){
+    e.preventDefault()
+    q('header').classList.toggle('nav-is-visible')
+		q('.cd-main-nav').classList.toggle('nav-is-visible')
+	})
+
+	//mobile version - go back to main navigation
+	q('.go-back').addEventListener('click', function(e){
+		e.preventDefault()
+		q('.cd-main-nav').classList.remove('moves-out')
+	})
+
+	//open sub-navigation
+	q('.cd-subnav-trigger').addEventListener('click', function(e){
+		e.preventDefault()
+		q('.cd-main-nav').classList.toggle('moves-out')
+  })
+  
+  window.addEventListener( 'hashchange', () => {
+    q('.cd-main-nav').classList.remove('moves-out')
+    q('.cd-main-nav').classList.remove('nav-is-visible')
+    q('header').classList.remove('nav-is-visible')
+  })
 }
