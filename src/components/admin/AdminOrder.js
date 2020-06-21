@@ -1,7 +1,7 @@
 import React from 'react'
 import OrderProduct from '../order/OrderProduct';
 import { useDispatch } from 'react-redux';
-import { saveOrderInfo } from '../../redux/actions';
+// import { saveOrderInfo } from '../../redux/actions';
 
 export default function AdminOrder(props) {
 

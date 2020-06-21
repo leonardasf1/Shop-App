@@ -1,5 +1,6 @@
 import { Rest } from "../../modules/fetch"
-import { authAction } from "../../redux/actions"
+import { authAction } from "../../redux/appReducer"
+import { jsonToArr } from "../../redux/prodsReducer"
 
 export function loginFormHandler(e, dispatch) {
 
@@ -25,16 +26,24 @@ export function loginFormHandler(e, dispatch) {
           } else { errorHandler(email, data.error.message) }
         }
         else if (data.registered) {
-          let authObj = {
-            "idToken": data.idToken,
-            "email": data.email,
-            "timer": Date.now() + data.expiresIn * 1000
-          }
-          dispatch(authAction(authObj))
-          sessionStorage.setItem("auth",
-                JSON.stringify(authObj)
-          )
-          window.history.back()
+          Rest.getUser(data.email, data.idToken)
+          .then(json => {
+            let user = jsonToArr(json)[0]
+            let authObj = {
+              "id": user.id,
+              "name": user.name,
+              "tel": user.tel,
+              "status": user.status,
+              "idToken": data.idToken,
+              "email": data.email,
+              "timer": Date.now() + data.expiresIn * 1000
+            }
+            dispatch(authAction(authObj))
+            sessionStorage.setItem("auth",
+                  JSON.stringify(authObj)
+            )
+            window.history.back()
+          })
         }
       })
     }
@@ -46,7 +55,7 @@ function errorHandler(item, text) {
       item.previousElementSibling.innerText = ''
     })
 }
-// PASSWORD_LOGIN_DISABLED
+
 export function signupFormHandler(e) {
     e.preventDefault()
     let name = e.target[0]
@@ -69,6 +78,11 @@ export function signupFormHandler(e) {
               errorHandler(pas, data.error.message)
           } else { errorHandler(email, data.error.message) }
       } else {
+        Rest.newUser( 
+          name.value,
+          email.value,
+          tel.value
+        )
         window.location.hash = "#login"
       }
     })
@@ -113,4 +127,3 @@ export function validAuth(e) {
         errorHandler(e.target, 'Ограничение 9-29 символов')
     }
   }
-// function byId(id) { return document.getElementById(id) }

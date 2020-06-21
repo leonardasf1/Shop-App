@@ -1,6 +1,6 @@
 import { addToCart } from "../../redux/cartReducer";
 import { Rest } from '../../modules/fetch';
-import { showLoader, showAlert, hideLoader } from '../../redux/actions';
+import { showLoader, showAlert, hideLoader } from '../../redux/appReducer';
 import { setSeparateProds } from '../../redux/prodsReducer';
 
 export function clearChoice(choice) {

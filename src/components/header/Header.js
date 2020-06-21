@@ -38,16 +38,17 @@ export default function Header(props) {
               <li><a href="#auth">Войти</a></li>
             }
             {props.auth.timer > Date.now() && 
-              <li><a href="#profile">{props.auth.email.split("@")[0]}</a></li>
+              <li><a href="#profile">{props.auth.name}</a></li>
             }
             {props.auth.timer > Date.now() && 
-              <li><a onClick={logout} href="#home">Выйти</a></li>
+              <li><a href="#home" onClick={logout}>Выйти</a></li>
             }
 
-            {props.authEmail === 'admin' &&
+            {props.auth.status === 'admin' &&
+            // props.auth.id === 'adminId' &&
               <li><a href="#orderList">Заказы</a></li>
             } {/* исправить */}
-            {props.authEmail === 'admin' &&
+            {props.auth.status === 'admin' &&
               <li><a href="#admin">Добавить новый товар</a></li>
             } {/* исправить */}
 

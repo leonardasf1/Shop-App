@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './style.scss'
 import { loginFormHandler, signupFormHandler, validAuth } from './script'
 import { useDispatch } from 'react-redux'
-import { deleteAuth } from '../../redux/actions'
+// import { deleteAuth } from '../../redux/actions'
 
 let dispatch = {}
 export default function Auth(props) {

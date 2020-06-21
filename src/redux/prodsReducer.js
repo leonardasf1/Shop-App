@@ -50,7 +50,7 @@ export function setSeparateProds(json) {
 
 // scripts ------------------------------------------------- 
 
-function jsonToArr(json) {
+export function jsonToArr(json) {
     return Object.keys(json)
     .map( key => ({ ...json[key], id: key }))
 }

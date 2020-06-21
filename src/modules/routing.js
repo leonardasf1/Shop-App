@@ -1,4 +1,4 @@
-import { ROUTE_PATH } from "../redux/types";
+import { setPath } from '../redux/appReducer'
 
 export function routing() {
     return dispatch => {
@@ -7,12 +7,5 @@ export function routing() {
         window.addEventListener(
             'hashchange', () => { dispatch(setPath()) }
         );
-    }
-}
-
-function setPath() {
-    return {
-        type: ROUTE_PATH,
-        payload: window.location.hash
     }
 }

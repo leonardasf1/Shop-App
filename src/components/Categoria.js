@@ -24,6 +24,7 @@ export default function Categoria() {
         <h1>
             {categName === "longboard" && "Лонгборды"}
             {categName === "bicycle" && "Велосипеды"}
+            {categName === "0" && "Категория 3"}
         </h1>
     </div>
 </div>

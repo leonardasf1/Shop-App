@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { setOrders } from '../../redux/actions'
+import { setOrders } from '../../redux/appReducer'
 import { Rest } from '../../modules/fetch'
 
 export default function OrderList(props) {

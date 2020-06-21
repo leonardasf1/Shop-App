@@ -5,7 +5,7 @@ export default function CatalogBar() {
         <>
             <li><a href="#categ/longboard">Лонгборды</a></li>
             <li><a href="#categ/bicycle">Велосипеды</a></li>
-            <li><a href="#0">Категория 3</a></li>
+            <li><a href="#categ/0">Категория 3</a></li>
         </>
     )
 }

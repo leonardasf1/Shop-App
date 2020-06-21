@@ -7,7 +7,7 @@ import {
 import {
   showLoader,
   hideLoader,
-  showAlert } from '../redux/actions'
+  showAlert } from '../redux/appReducer'
 import { Rest } from '../modules/fetch'
 
 export default function ProdList(props) {
@@ -20,7 +20,14 @@ export default function ProdList(props) {
     dispatch(showLoader())
     Rest.getProducts(request)
     .then(json => {
-        if (json.error) dispatch(showAlert(json.error))
+        if (!json) {
+          dispatch(showAlert("Что-то пошло не так!"))
+          dispatch(hideLoader())
+        }
+        else if (json.error) {
+          dispatch(showAlert(json.error))
+          dispatch(hideLoader())
+        }
         else {
           dispatch(hideLoader())
           dispatch(method(json))

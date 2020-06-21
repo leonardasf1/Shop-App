@@ -50,7 +50,7 @@ export default function Order(props) {
                 <div className="textfield--float-label">
                     <span className="error"></span>
                     <input type="text" required name="name" id="name"
-                        defaultValue={orderInfo.name} />
+                        defaultValue={orderInfo.name || props.auth.name} />
                     <label>Имя</label>
                 </div>
                 <div className="textfield--float-label">
@@ -63,7 +63,7 @@ export default function Order(props) {
                 <div className="textfield--float-label">
                     <span className="error"></span>
                     <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="tel" id="tel"
-                        defaultValue={orderInfo.tel} />
+                        defaultValue={orderInfo.tel || props.auth.tel} />
                     <label>Номер мобильного телефона</label>
                 </div>
                 <div className="textfield--float-label">
@@ -95,7 +95,7 @@ export default function Order(props) {
 
     let page2 = (
         <div className="order-emptyCart">
-            <span>&#128722;</span>
+            <span role="img" aria-label="корзина">&#128722;</span>
             <h3>В вашей корзине нет товаров</h3>
         </div>
     )
