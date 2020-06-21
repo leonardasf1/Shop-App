@@ -31,7 +31,7 @@ export function handleOrder(e, cartProds, sum, auth) {
             sum,
             date: Date.now(),
             status: 'new',
-            comment: inputs.comment.value,
+            usersComment: inputs.comment.value,
             userId: auth.id
         }
         Rest.new(orderToSend, "orders", auth.idToken)

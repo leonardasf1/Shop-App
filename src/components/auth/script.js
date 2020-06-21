@@ -1,5 +1,5 @@
 import { Rest } from "../../modules/fetch"
-import { authAction } from "../../redux/appReducer"
+import { authAction, showLoader, hideLoader } from "../../redux/appReducer"
 import { jsonToArr } from "../../redux/prodsReducer"
 
 export function loginFormHandler(e, dispatch) {
@@ -56,7 +56,7 @@ function errorHandler(item, text) {
     })
 }
 
-export function signupFormHandler(e) {
+export function signupFormHandler(e, dispatch) {
     e.preventDefault()
     let name = e.target[0]
     let email = e.target[1]
@@ -69,6 +69,7 @@ export function signupFormHandler(e) {
         isValidAuth(tel.value, 'tel') &&
         isValidAuth(name.value, 'name'))
 
+    dispatch(showLoader())
     Rest.auth( email.value, pas.value, 'signUp')
     .then(data => {
         if (data.error) {
@@ -78,12 +79,14 @@ export function signupFormHandler(e) {
               errorHandler(pas, data.error.message)
           } else { errorHandler(email, data.error.message) }
       } else {
+
+        dispatch(hideLoader())
+        window.location.hash = "#login"
         Rest.newUser( 
           name.value,
           email.value,
           tel.value
         )
-        window.location.hash = "#login"
       }
     })
   }
@@ -95,7 +98,7 @@ function isValidAuth(value, form) {
 		value.includes('=') ||
 		value.includes("'")) {
         return false
-	} else if (form !== 'tel' && form !== 'name' &&
+	} else if (form === 'pas' &&
 		(value.length < 9 || value.length > 25)) {
 		return false
 	} else if (form === 'tel' && value.length > 18) {
@@ -121,7 +124,7 @@ export function validAuth(e) {
         errorHandler(e.target, 'Ограничение 18 символов')
         //для международных вызовов на коммутаторах ограничение 18
     } else if (
-        e.target.name !== 'tel' &&
+        e.target.name === 'pas' &&
         (e.target.value.length < 9 ||
         e.target.value.length > 29)) {
         errorHandler(e.target, 'Ограничение 9-29 символов')

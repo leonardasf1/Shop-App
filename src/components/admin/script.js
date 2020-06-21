@@ -1,5 +1,4 @@
 import { Rest } from "../../modules/fetch"
-import { logout } from "../auth/Auth"
 
 let countSpec = 0
     
@@ -109,6 +108,5 @@ export function setNewProduct(e, auth, prodId, newIndex) {
         ${ error ? error :
         'авторизуйтесь заново и вернитесь на эту страницу, чтобы добавить товар в базу'
         }`
-        logout()
     }
 }

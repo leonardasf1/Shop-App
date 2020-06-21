@@ -4,7 +4,10 @@
   // --red: #df4b41;
 }
 
-* { box-sizing: border-box }
+* {
+  box-sizing: border-box;
+  outline-color: #87cefa;
+}
 
 a {
   cursor: pointer;
@@ -81,4 +84,7 @@ thead {
 }
 button {
   border: none;
+}
+select, input {
+  font-size: 16px;
 }

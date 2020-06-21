@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './style.scss'
 import { loginFormHandler, signupFormHandler, validAuth } from './script'
 import { useDispatch } from 'react-redux'
-// import { deleteAuth } from '../../redux/actions'
+// import { deleteAuth } from '../../redux/appReducer'
 
 let dispatch = {}
 export default function Auth(props) {
@@ -37,15 +37,15 @@ export const loginHTML = (
         </div>
       </div>
     </div>
-    <div className="form__group">
-      <button type="submit" className="mui-btn--primary">Войти</button>
+    <div className="form__comment">
+      <button type="submit">Войти</button>
+      <div>Ещё нет аккаунта? <a href="#signup" id="a_signup">Зарегистрируйтесь</a></div>
     </div>
-    <br /><p>Ещё нет аккаунта? <a href="#signup" id="a_signup">Зарегистрируйтесь</a></p>
   </form>
   )
 
 export const signupHTML = (
-<form className="form" id="signup-form" onSubmit={signupFormHandler}>
+<form className="form" id="signup-form" onSubmit={(e) => signupFormHandler(e, dispatch)}>
   <div className="form__group">
   	<h3>Регистрация</h3>
     <div>
@@ -88,7 +88,7 @@ export const signupHTML = (
 </form>
 )
 
-export const logout = function () {
-    sessionStorage.auth = false
-    // dispatch(deleteAuth())
-}
+// export function logout() {
+//     sessionStorage.auth = false
+//     dispatch(deleteAuth())
+// }

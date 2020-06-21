@@ -80,12 +80,11 @@ export default function Order(props) {
             </div>
             <div className="form__comment">
                 <button type="submit" id="postOrder">Отправить заказ</button>
-                <div>Уже есть аккаунт? <a href="#login" id="a_login">Войти</a></div>
-                Нажимая кнопку «Отправить заказ»:
-                <div>
-                <input name="agreement" type="checkbox" required defaultChecked />
-                Я принимаю <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Условия использования</a> и даю своё согласие на обработку моей персональной информации на условиях, определенных <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.
-                </div>
+
+                { (!props.auth || props.auth.timer < Date.now()) &&
+                <div>Для оформления заказа необходимо <a href="#login" id="a_login">Войти</a></div>
+                }
+                
             </div>
             </form>
             </div>

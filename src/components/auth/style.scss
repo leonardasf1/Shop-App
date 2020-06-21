@@ -1,6 +1,6 @@
 
 .error {
-    color: #df4b41;
+    color: var(--red);
     right: 0;
     position: absolute;
 }
@@ -40,17 +40,6 @@
     h3 {
         text-align: center;
         font-weight: 400;
-    }
-    button {
-        width: 100%;
-        height: 48px;
-        border: none;
-        border-radius: 4px;
-        background: #ffdb4d;
-        cursor: pointer;
-        font-weight: 500;
-        font-size: 14px;
-        color: #000;
     }
 }
  /*	.form__group .col-md-12::after {
@@ -98,7 +87,6 @@
     input {
         width: 100%;
         height: 32px;
-        font-size: 16px;
         border: none;
         border-bottom: 1px solid #999;
         margin-bottom: 30px;
@@ -107,20 +95,29 @@
     
         &:focus {
             border-bottom: 2px solid #ffdb4d;
-        }
-    }
 
-    input:focus~label {
-        color:#2196F3;
-        font-size:12px;
-        line-height:15px;
+            &~label {
+                color:#2196F3;
+                font-size:12px;
+                line-height:15px;
+            }
+        }
     }
     label {
         position:absolute;
         top:0;
-        font-size:16px;
         color:rgba(0,0,0,.26);
         pointer-events:none;
         transition: all .2s ease-out;
+        white-space: nowrap;
+    }
+    select {
+        display: block;
+        height: 32px;
+        width: 100%;
+        outline: 0;
+        border: none;
+        border-bottom: 1px solid rgba(0,0,0,.26);
+        cursor: pointer;
     }
 }

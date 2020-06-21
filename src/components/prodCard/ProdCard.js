@@ -24,7 +24,7 @@ export default function ProdCard(props) {
         <div className="prodCard">
             <div className="prodCard_block1">
 
-            {props.auth.status === 'admin' &&
+            {props.auth && props.auth.status === 'admin' &&
             <a href={'#admin/' + product.id} className="error">Изменить</a>
             } {/* исправить */}
 

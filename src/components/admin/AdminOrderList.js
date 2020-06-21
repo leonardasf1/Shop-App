@@ -10,14 +10,15 @@ export default function OrderList(props) {
     useEffect(() => { fetchOrders() },[])
 
     function fetchOrders() {
-
-        Rest.getOrders(props.auth.idToken)
-        .then(json => {
-            if (json.error) console.log(json.error)
-            else {
-                dispatch(setOrders(json))
-            }
-        })
+        if (props.auth.timer > Date.now()) {
+            Rest.getOrders(props.auth.idToken)
+            .then(json => {
+                if (json.error) console.log(json.error)
+                else {
+                    dispatch(setOrders(json))
+                }
+            })
+        }
     }
     
     return (

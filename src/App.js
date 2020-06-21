@@ -13,7 +13,7 @@ import Profile from './components/Profile';
 import { routing } from './modules/routing';
 
 import AdminProd from './components/admin/AdminProd';
-import OrderList from './components/admin/OrderList';
+import AdminOrderList from './components/admin/AdminOrderList';
 import AdminOrder from './components/admin/AdminOrder';
 
 function App() {
@@ -107,7 +107,8 @@ function App() {
           />
         }
         { route === '#admin' &&
-        auth.email !== 'admin' && //изменить после настройки
+        auth.timer > Date.now() &&
+        auth.status === 'admin' && //изменить
           <AdminProd
             auth={auth}
             prod={false}
@@ -115,21 +116,25 @@ function App() {
           />
         }
         { route === `#admin/${window.location.hash.split("#admin/")[1]}` &&
-        auth.email !== 'admin' && //изменить после настройки
+        auth.timer > Date.now() &&
+        auth.status === 'admin' && //изменить
           <AdminProd
             auth={auth}
             prod={lastProds.find(i => i.id === window.location.hash.split("#admin/")[1])}
           />
         }
-        { route === `#orderList` &&
-          <OrderList
+        { route === `#adminOrderList` &&
+        auth.timer > Date.now() &&
+        auth.status === 'admin' && //изменить
+          <AdminOrderList
             auth={auth}
             orders={orders}
           />
         }
         { orders.length > 1 &&
         route === `#adminorder/${window.location.hash.split("#adminorder/")[1]}` &&
-        auth.email !== 'admin' && //изменить после настройки
+        auth.timer > Date.now() &&
+        auth.status === 'admin' && //изменить
           <AdminOrder
             auth={auth}
             order={orders.find(i => i.id === window.location.hash.split("#adminorder/")[1])}

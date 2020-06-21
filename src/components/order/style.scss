@@ -40,12 +40,14 @@
                     width: 23px;
                     height: 23px;
                     border: 1px solid #eaeaea;
-                    text-align: center
+                    text-align: center;
+                    font-size: 13px;
                 }
                 > .countMinus, > .countPlus {
                     color: #00adee;
                     background: #d9f3fd;
                     cursor: pointer;
+                    font-size: 15px;
                 }
             }
             .removeIcon {

@@ -1,12 +1,12 @@
 import React from 'react'
 import OrderProduct from '../order/OrderProduct';
 import { useDispatch } from 'react-redux';
-// import { saveOrderInfo } from '../../redux/actions';
+// import { saveOrderInfo } from '../../redux/';
 
 export default function AdminOrder(props) {
 
     let sum = 0;
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     return (
     <div className="orderComponent">
@@ -38,7 +38,7 @@ export default function AdminOrder(props) {
             <div>
                 <span>Стоимость товаров: {sum} руб</span><br />
                 <span>Доставка: {props.order.delivery ? 'от 300' : '0'} руб</span><br />
-                <span>Итого: {props.order.delivery ? 'от' : ''}
+                <span>Итого: {props.order.delivery ? 'от ' : ''}
                     <b>{(props.order.delivery ? 300 : 0) + sum} руб</b>
                     (<b>{props.order.sum}</b>)
                 </span><br />
@@ -49,7 +49,7 @@ export default function AdminOrder(props) {
             <h2>Данные покупателя</h2>
             <div>
             <form id="tosend" className="form"
-                // onSubmit={(e) => handleOrder(e, props.cartProds, sum, props.auth)}
+                // onSubmit={(e) => handleOrder(e, props.order.cartProds, sum, props.auth)}
             >
             <div>
                 <div className="textfield--float-label">
@@ -79,20 +79,29 @@ export default function AdminOrder(props) {
                     <label>Адрес доставки если нужна доставка</label>
                 </div>
                 <div className="textfield--float-label">
+                    <textarea type="text" rows="5" name="comment" disabled
+                        defaultValue={props.order.usersComment} />
+                    <label>Комментарий покупателя</label>
+                </div>
+                <div className="textfield--float-label">
                     <textarea type="text" rows="5" name="comment"
-                        defaultValue={props.order.comment} />
-                    <label>Комментарий</label>
+                        defaultValue={props.order.managersComment} />
+                    <label>Комментарий менеджера</label>
+                </div>
+                <div className="textfield--float-label">
+                    <select name="status" id="status"
+                        defaultValue={props.order.status}>
+                        <option value="new">Новый</option>
+                        <option value="processing">В обработке</option>
+                        <option value="confirmed">Подтвержден</option>
+                        <option value="done">Выполнен</option>
+                    </select>
+                    <label>Статус заказа</label>
                 </div>
             </div>
-            {/* <div className="form__comment">
-                <button type="submit" id="postOrder">Отправить заказ</button>
-                <div>Уже есть аккаунт? <a href="#login" id="a_login">Войти</a></div>
-                Нажимая кнопку «Отправить заказ»:
-                <div>
-                <input name="agreement" type="checkbox" required defaultChecked />
-                Я принимаю <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Условия использования</a> и даю своё согласие на обработку моей персональной информации на условиях, определенных <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.
-                </div>
-            </div> */}
+            <div className="form__comment">
+                <button type="submit" id="postAdminOrder">Сохранить изменения</button>
+            </div>
             </form>
             </div>
         </div>

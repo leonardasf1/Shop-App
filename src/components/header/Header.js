@@ -2,12 +2,18 @@ import React, { useEffect } from 'react'
 
 // import SearchBar from '../SearchBar'
 import CatalogBar from '../CatalogBar'
-import { logout } from '../auth/Auth'
 import './style.scss'
+import { useDispatch } from 'react-redux'
+import { deleteAuth } from '../../redux/appReducer'
+// import { logout } from '../auth/Auth'
+
+let dispatch = {}
 
 export default function Header(props) {
+
+  dispatch = useDispatch()
   useEffect(() => {
-    setHeader()
+    setHeader(props.auth.timer)
   },[])
   sessionStorage.setItem(
       "cartProds", JSON.stringify(props.cartProds)
@@ -28,12 +34,17 @@ export default function Header(props) {
               </ul>
             </li>
 
-            <li><a href="#0">О нас</a></li>
-            {/* <li><a href="#0">Проекты</a></li> */}
-            {/* <li><a href="#0">Блог</a></li> */}
-            <li><a href="#0">Контакты</a></li>
-            {
-            (!props.auth ||
+            {(!props.auth ||
+            props.auth.status !== 'admin' ||
+            props.auth.timer < Date.now()) &&
+            <>
+              <li><a href="#0">О нас</a></li>
+              {/* <li><a href="#0">Проекты</a></li>
+              <li><a href="#0">Блог</a></li> */}
+              <li><a href="#0">Контакты</a></li>
+            </>
+            }
+            {(!props.auth ||
             props.auth.timer < Date.now()) && 
               <li><a href="#auth">Войти</a></li>
             }
@@ -44,11 +55,13 @@ export default function Header(props) {
               <li><a href="#home" onClick={logout}>Выйти</a></li>
             }
 
-            {props.auth.status === 'admin' &&
+            {props.auth.timer > Date.now() &&
+            props.auth.status === 'admin' &&
             // props.auth.id === 'adminId' &&
-              <li><a href="#orderList">Заказы</a></li>
+              <li><a href="#adminOrderList">Заказы</a></li>
             } {/* исправить */}
-            {props.auth.status === 'admin' &&
+            {props.auth.timer > Date.now() &&
+            props.auth.status === 'admin' &&
               <li><a href="#admin">Добавить новый товар</a></li>
             } {/* исправить */}
 
@@ -70,7 +83,7 @@ export default function Header(props) {
     )
 }
 
-function setHeader() {
+function setHeader(timer) {
 	function q(i) { return document.querySelector(i) }
 
 	//mobile version - open/close navigation
@@ -91,10 +104,15 @@ function setHeader() {
 		e.preventDefault()
 		q('.cd-main-nav').classList.toggle('moves-out')
   })
-  
   window.addEventListener( 'hashchange', () => {
     q('.cd-main-nav').classList.remove('moves-out')
     q('.cd-main-nav').classList.remove('nav-is-visible')
     q('header').classList.remove('nav-is-visible')
+    if (timer < Date.now()) logout()
   })
+}
+
+export function logout() {
+  sessionStorage.auth = false
+  dispatch(deleteAuth())
 }
