@@ -19,6 +19,7 @@ export function setSum(sum, product) {
 export function handleOrder(e, cartProds, sum, auth) {
     e.preventDefault()
     let inputs = e.target.elements
+    inputs.postOrder.disabled = true
 
     if (auth.timer > Date.now()) {
         
@@ -30,6 +31,9 @@ export function handleOrder(e, cartProds, sum, auth) {
             delivery: inputs.delivery.value,
             sum,
             date: Date.now(),
+            number: new Date(Date.now())
+            .toLocaleDateString('ko-KR', {year: '2-digit', month: '2-digit', day: '2-digit'})
+            .replace(". ", ""),
             status: 'new',
             usersComment: inputs.comment.value,
             userId: auth.id
@@ -39,7 +43,7 @@ export function handleOrder(e, cartProds, sum, auth) {
         .then(result => {
             if (result.error) handleError(inputs, result.error)
             else {
-                inputs.postOrder.innerText = "Заказ отправлен"
+                inputs.postOrder.innerText = `Заказ ${orderToSend.number + result.name.substr(-3)} отправлен`
                 sessionStorage.cartProds = []
                 sessionStorage.orderInfo = []
             }

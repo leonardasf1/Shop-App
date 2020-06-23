@@ -49,7 +49,7 @@ export default function Header(props) {
               <li><a href="#auth">Войти</a></li>
             }
             {props.auth.timer > Date.now() && 
-              <li><a href="#profile">{props.auth.name}</a></li>
+              <li><a href="#user">{props.auth.name}</a></li>
             }
             {props.auth.timer > Date.now() && 
               <li><a href="#home" onClick={logout}>Выйти</a></li>

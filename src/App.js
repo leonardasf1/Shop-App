@@ -8,13 +8,14 @@ import Header from './components/header/Header';
 import Order from './components/order/Order';
 import ProdCard from './components/prodCard/ProdCard';
 import ProdList from './components/ProdList';
-import Profile from './components/Profile';
+import User from './components/user/User';
 
 import { routing } from './modules/routing';
 
 import AdminProd from './components/admin/AdminProd';
 import AdminOrderList from './components/admin/AdminOrderList';
 import AdminOrder from './components/admin/AdminOrder';
+import UserOrder from './components/user/UserOrder';
 
 function App() {
 
@@ -101,9 +102,11 @@ function App() {
             orderInfo={orderInfo}
           />
         }
-        { route === '#profile' &&
-          <Profile
+        { route === '#user' &&
+        auth.timer > Date.now() &&
+          <User
             auth={auth}
+            orders={orders}
           />
         }
         { route === '#admin' &&
@@ -138,6 +141,14 @@ function App() {
           <AdminOrder
             auth={auth}
             order={orders.find(i => i.id === window.location.hash.split("#adminorder/")[1])}
+          />
+        }
+        { orders.length > 1 &&
+        route === `#userorder/${window.location.hash.split("#userorder/")[1]}` &&
+        auth.timer > Date.now() &&
+          <UserOrder
+            auth={auth}
+            order={orders.find(i => i.id === window.location.hash.split("#userorder/")[1])}
           />
         }
       </main>

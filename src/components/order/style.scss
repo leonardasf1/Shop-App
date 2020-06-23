@@ -101,9 +101,25 @@
     text-align: center;
 
     span {
-        font-size: 10rem;
+        font-size: 5rem;
     }
     h3 {
         margin-inline-start: 0;
+    }
+}
+.orderList {
+    padding: 1rem;
+
+    .orderForList {
+        display: flex;
+        line-height: 48px;
+        max-width: 500px;
+        border-bottom: solid 1px #3333;
+        justify-content: space-between;
+        margin: 0 auto;
+    
+        // > div {
+        //     margin-left: 1rem;
+        // }
     }
 }

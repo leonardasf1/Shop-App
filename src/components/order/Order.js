@@ -20,7 +20,7 @@ export default function Order(props) {
     let page1 = (
     <div className="orderComponent">
         <div className="cartForm">
-            <h2>Корзина</h2>
+            <h2>{orderInfo.number ? `Заказ ${orderInfo.number + orderInfo.orderId.substr(-3)}` : "Корзина"}</h2>
 
             <div>
             { props.cartProds.map((product, index) => {
@@ -42,10 +42,13 @@ export default function Order(props) {
         </div>
         
         <div className="orderForm">
-            <h2>Оформление заказа</h2>
+        {orderInfo.number ? "" : <h2>Оформление заказа</h2>}
             <div>
             <form id="tosend" className="form"
-                onSubmit={(e) => handleOrder(e, props.cartProds, sum, props.auth)}>
+                onSubmit={(e) => {
+                    if (!orderInfo.number) handleOrder(e, props.cartProds, sum, props.auth)
+                    if (orderInfo.number) e.preventDefault()
+                }}>
             <div>
                 <div className="textfield--float-label">
                     <span className="error"></span>
@@ -79,7 +82,9 @@ export default function Order(props) {
                 </div>
             </div>
             <div className="form__comment">
-                <button type="submit" id="postOrder">Отправить заказ</button>
+                <button type="submit" id="postOrder">
+                    {orderInfo.number ? "Пока нельзя изменить" : "Отправить заказ"}
+                </button>
 
                 { (!props.auth || props.auth.timer < Date.now()) &&
                 <div>Для оформления заказа необходимо <a href="#login" id="a_login">Войти</a></div>
