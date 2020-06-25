@@ -108,18 +108,26 @@
     }
 }
 .orderList {
-    padding: 1rem;
+    // max-width: 500px;
 
-    .orderForList {
-        display: flex;
-        line-height: 48px;
-        max-width: 500px;
-        border-bottom: solid 1px #3333;
-        justify-content: space-between;
+    table {
         margin: 0 auto;
+    }
+    tr {
+        line-height: 48px;
+        white-space: nowrap;
+
+        td {
+            padding: 0 1rem;
+        }
     
-        // > div {
-        //     margin-left: 1rem;
-        // }
+        .orderForList-product {
+            overflow: auto;
+        }
+    }
+}
+@media (max-width: 400px) {
+    .orderForList-product {
+        display: none;
     }
 }

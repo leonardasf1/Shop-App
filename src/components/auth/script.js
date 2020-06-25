@@ -38,11 +38,11 @@ export function loginFormHandler(e, dispatch) {
               "email": data.email,
               "timer": Date.now() + data.expiresIn * 1000
             }
-            dispatch(authAction(authObj))
             sessionStorage.setItem("auth",
                   JSON.stringify(authObj)
             )
-            window.history.back()
+            dispatch(authAction(authObj))
+            window.location.hash = '#home'
           })
         }
       })

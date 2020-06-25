@@ -13,7 +13,7 @@ export default function Header(props) {
 
   dispatch = useDispatch()
   useEffect(() => {
-    setHeader(props.auth.timer)
+    setHeader()
   },[])
   sessionStorage.setItem(
       "cartProds", JSON.stringify(props.cartProds)
@@ -83,7 +83,7 @@ export default function Header(props) {
     )
 }
 
-function setHeader(timer) {
+function setHeader() {
 	function q(i) { return document.querySelector(i) }
 
 	//mobile version - open/close navigation
@@ -108,7 +108,7 @@ function setHeader(timer) {
     q('.cd-main-nav').classList.remove('moves-out')
     q('.cd-main-nav').classList.remove('nav-is-visible')
     q('header').classList.remove('nav-is-visible')
-    if (timer < Date.now()) logout()
+    if (sessionStorage.auth.timer < Date.now()) logout()
   })
 }
 

@@ -3,11 +3,65 @@ import { useDispatch } from 'react-redux'
 import { setOrders } from '../../redux/appReducer'
 import { Rest } from '../../modules/fetch'
 
+let check = false
+
 export default function OrderList(props) {
 
     const dispatch = useDispatch()
 
     useEffect(() => { fetchOrders() },[])
+
+    return (
+    <div className="orderList">
+        <table>
+            <thead>
+                <tr>
+                    <td>
+                        <input type="date" onChange={getOrdersByDate} />
+                        <button onClick={fetchOrders}>сброс</button>
+                    </td>
+                    <td>
+                        <input placeholder="email"
+                        onBlur={getOrdersByEmail}
+                        onChange={() => check = true} />
+                    </td>
+                    <td>
+                        <select name="status" id="status"
+                            onChange={getOrdersByStatus}
+                            >
+                            <option value="">Все</option>
+                            <option value="new">Новый</option>
+                            <option value="processing">В обработке</option>
+                            <option value="confirmed">Подтвержден</option>
+                            <option value="done">Выполнен</option>
+                        </select>
+                    </td>
+                    <td>Сумма</td>
+                    <td>Доставка</td>
+                </tr>
+            </thead>
+            <tbody>
+
+            {props.orders.length > 0 &&
+            props.orders.map((order, index) => {
+                return (
+                <tr key={index} className="orderForList">
+                    <td>
+                        <a href={`#adminorder/${order.id}`}>
+{order.number} / {new Date(order.date).toLocaleTimeString()}
+                        </a>
+                    </td>
+                    <td>{order.email}</td>
+                    <td>{order.status}</td>
+                    <td>{order.sum} руб</td>
+                    <td>{order.delivery}</td>
+                </tr>)
+            })}
+            {props.orders.length === 0 &&
+            <h3>Нет заказов</h3>}
+            </tbody>
+        </table>
+    </div>)
 
     function fetchOrders() {
         if (props.auth.timer > Date.now()) {
@@ -20,41 +74,31 @@ export default function OrderList(props) {
             })
         }
     }
+    function getOrdersByStatus(e) {
+        getFilteredOrders("status", e.target.value)
+    }
+    function getOrdersByEmail(e) {
+        if (check)
+        getFilteredOrders("email", e.target.value)
+        check = false
+    }
+    function getOrdersByDate(e) {
+        getFilteredOrders("date", e.target.value)
+    }
+    function getFilteredOrders(orderBy, equalTo) {
+        if (!equalTo) fetchOrders()
+        else if (props.auth.timer > Date.now()) {
+            Rest.getFilteredItems(
+                "orders", props.auth.idToken,
+                orderBy, equalTo, 100)
+            .then(json => {
+                if (json === null) dispatch(setOrders({}))
+                else if (json.error) console.log(json.error)
+                else {
+                    dispatch(setOrders(json))
+                }
+            })
+        }
+    }
     
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <td>Дата</td>
-                    <td>email</td>
-                    <td></td>
-                    <td>Статус</td>
-                    <td>Сумма</td>
-                    <td>Доставка</td>
-                </tr>
-            </thead>
-            <tbody>
-
-            {props.orders.length > 0 &&
-            props.orders.map((order, index) => {
-                return (
-                <tr key={index}>
-                    <td>
-{new Date(order.date).toLocaleDateString()} / {new Date(order.date).toLocaleTimeString()}
-                    </td>
-                    <td>{order.email}</td>
-                    <td>
-                        <a href={`#adminorder/${order.id}`}>
-                            <button>Открыть</button>
-                        </a>
-                    </td>
-                    <td>{order.status}</td>
-                    <td>{order.sum} руб</td>
-                    <td>{order.delivery}</td>
-                </tr>)
-            })}
-
-            </tbody>
-        </table>
-    )
 }

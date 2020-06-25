@@ -72,15 +72,9 @@ h2, h3 {
   margin-inline-start: 1rem;
 }
 table {
-  padding: 1rem;
-  width: 100%;
-
   tr:nth-child(odd) {
-    background: #0002;
+    background: #0001;
   }
-}
-thead {
-  position: sticky;
 }
 button {
   border: none;

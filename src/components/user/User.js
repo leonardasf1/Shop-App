@@ -7,7 +7,7 @@ export default function User(props) {
 
     const dispatch = useDispatch()
 
-    useEffect(() => { fetchUserOrders() },[])
+    useEffect(() => { getOrdersByUser() },[])
 
     return (
         <div>
@@ -20,19 +20,22 @@ export default function User(props) {
             
             <div className="orderList">
                 <h3>Список заказов</h3>
+                <table><tbody>
                 {props.orders.length > 0 &&
                 props.orders.map((order, index) => {
                     return (
-                    <div key={index} className="orderForList">
-    <div>{order.number + order.id.substr(-3)}</div>
-
-    <div><a href={`#userorder/${order.id}`}><button>Открыть</button></a></div>
-
-    <div>{order.status}</div>
-
-    <div>{order.sum} руб</div>
-                    </div>)
+                    <tr key={index} className="orderForList">
+                        <td>
+                            <a href={`#userorder/${order.id}`}>
+                                {order.number + order.id.substr(-3)}
+                            </a>
+                        </td>
+                        <td className="orderForList-product">{order.cartProds[0].product.title}</td>
+                        <td>{order.status}</td>
+                        <td>{order.sum} руб</td>
+                    </tr>)
                 })}
+                </tbody></table>
             </div>
             <div>
                 <h3>Ваши отзывы</h3>
@@ -41,13 +44,15 @@ export default function User(props) {
         </div>
     )
 
-
-
-    function fetchUserOrders() {
+    function getOrdersByUser() {
         if (props.auth.timer > Date.now()) {
-            Rest.getUserOrders(props.auth.idToken, props.auth.email)
+            Rest.getFilteredItems(
+                "orders", props.auth.idToken,
+                "email", props.auth.email, 100)
             .then(json => {
-                if (json.error) console.log(json.error)
+                if (json === null) document.querySelector('.orderList').innerHTML = `
+                <h3>Нет заказов</h3>`
+                else if (json.error) console.log(json.error)
                 else {
                     dispatch(setOrders(json))
                 }
