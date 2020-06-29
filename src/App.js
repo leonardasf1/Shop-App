@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import './App.scss';
 import Auth, { loginHTML, signupHTML } from './components/auth/Auth';
@@ -16,6 +16,7 @@ import AdminProd from './components/admin/AdminProd';
 import AdminOrderList from './components/admin/AdminOrderList';
 import AdminOrder from './components/admin/AdminOrder';
 import UserOrder from './components/user/UserOrder';
+import SearchBar from './components/SearchBar'
 
 function App() {
 
@@ -60,10 +61,13 @@ function App() {
       <main>
 
         { (route === '' || route === '#home') &&
+        <>
+          <SearchBar />
           <ProdList
             loading={loading}
             request={`orderBy="index"&limitToLast=3`}
             lastProds={lastProds} />
+        </>
         }
         { route === `#categ/${window.location.hash.split("#categ/")[1]}` &&
         lastProds.length > 0 &&
@@ -78,6 +82,7 @@ function App() {
         { route === `#product/${window.location.hash.split("#product/")[1]}` &&
         lastProds.length > 0 &&
           <ProdCard
+            auth={auth}
             product={
               lastProds.find(i => i.id === window.location.hash.split("#product/")[1]) ||
               separateProds.find(i => i.id === window.location.hash.split("#product/")[1])
@@ -143,7 +148,7 @@ function App() {
             order={orders.find(i => i.id === window.location.hash.split("#adminorder/")[1])}
           />
         }
-        { orders.length > 1 &&
+        { orders.length > 0 &&
         route === `#userorder/${window.location.hash.split("#userorder/")[1]}` &&
         auth.timer > Date.now() &&
           <UserOrder

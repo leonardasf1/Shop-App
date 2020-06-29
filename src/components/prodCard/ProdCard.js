@@ -13,7 +13,7 @@ import {
 export default function ProdCard(props) {
     const dispatch = useDispatch()
 
-    useEffect(() => { fetchSeparateProd(dispatch, props.productId) },[props.productId])
+    useEffect(() => {fetchSeparateProd(dispatch, props.productId) },[props.productId])
 
     let product = props.product || {}
     let prodColor = '0'
@@ -25,6 +25,7 @@ export default function ProdCard(props) {
             <div className="prodCard_block1">
 
             {props.auth && props.auth.status === 'admin' &&
+            props.auth.timer > Date.now() &&
             <a href={'#admin/' + product.id} className="error">Изменить</a>
             } {/* исправить */}
 

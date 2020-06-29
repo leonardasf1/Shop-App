@@ -1,7 +1,7 @@
 import React from 'react'
 import OrderProduct from '../order/OrderProduct';
-import { useDispatch } from 'react-redux';
-// import { saveOrderInfo } from '../../redux/';
+import { setSum, updateOrder } from '../order/script'
+// import { useDispatch } from 'react-redux';
 
 export default function AdminOrder(props) {
 
@@ -11,23 +11,12 @@ export default function AdminOrder(props) {
     return (
     <div className="orderComponent">
         <div className="cartForm">
-            <h2>Заказ</h2>
+            <h2>Заказ {props.order.number + props.order.id.substr(-3)}</h2>
 
             <div>
             { props.order.cartProds.map((product, index) => {
 
-                sum += (
-                    (
-                    product.product['price@' + product.color] ||
-                    product.product.price
-                    ) * (
-                    100 - (
-                        product.product['sale@' + product.color] ||
-                        product.product.sale
-                        )
-                    ) / 100
-                ) * product.count
-
+                sum = setSum(sum, product)
                 return <OrderProduct
                             key={index}
                             product={product}
@@ -49,7 +38,7 @@ export default function AdminOrder(props) {
             <h2>Данные покупателя</h2>
             <div>
             <form id="tosend" className="form"
-                // onSubmit={(e) => handleOrder(e, props.order.cartProds, sum, props.auth)}
+                onSubmit={(e) => updateOrder(e, props.order, sum, props.auth)}
             >
             <div>
                 <div className="textfield--float-label">
@@ -84,8 +73,8 @@ export default function AdminOrder(props) {
                     <label>Комментарий покупателя</label>
                 </div>
                 <div className="textfield--float-label">
-                    <textarea type="text" rows="5" name="comment"
-                        defaultValue={props.order.managersComment} />
+                    <textarea type="text" rows="5" name="adminComment" id="adminComment"
+                        defaultValue={props.order.adminComment} />
                     <label>Комментарий менеджера</label>
                 </div>
                 <div className="textfield--float-label">

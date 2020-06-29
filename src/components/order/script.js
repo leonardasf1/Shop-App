@@ -1,5 +1,5 @@
 import { Rest } from "../../modules/fetch"
-import { saveOrderInfo } from '../../redux/cartReducer'
+import { saveOrderInfo, clearOrderState } from '../../redux/cartReducer'
 
 export function setSum(sum, product) {
     sum += (
@@ -16,7 +16,7 @@ export function setSum(sum, product) {
     return sum
 }
 
-export function handleOrder(e, cartProds, sum, auth) {
+export function handleOrder(e, cartProds, sum, auth, dispatch) {
     e.preventDefault()
     let inputs = e.target.elements
     inputs.postOrder.disabled = true
@@ -33,7 +33,7 @@ export function handleOrder(e, cartProds, sum, auth) {
             date: Date.now(),
             number: new Date(Date.now())
             .toLocaleDateString('ko-KR', {year: '2-digit', month: '2-digit', day: '2-digit'})
-            .replace(". ", ""),
+            .replace(". ", "").replace(". ", ""),
             status: 'new',
             usersComment: inputs.comment.value,
             userId: auth.id
@@ -44,6 +44,7 @@ export function handleOrder(e, cartProds, sum, auth) {
             if (result.error) handleError(inputs, result.error)
             else {
                 inputs.postOrder.innerText = `Заказ ${orderToSend.number + result.name.substr(-3)} отправлен`
+                dispatch(clearOrderState())
                 sessionStorage.cartProds = []
                 sessionStorage.orderInfo = []
             }
@@ -69,4 +70,38 @@ export function listenForms(dispatch) {
             dispatch(saveOrderInfo(e))
         })
     }
+}
+
+export function updateOrder(e, originOrder, sum, auth) {
+    e.preventDefault()
+    let inputs = e.target.elements
+    inputs.postAdminOrder.disabled = true
+
+    if (auth.timer > Date.now()) {
+        
+        let orderToSend = {
+            cartProds: originOrder.cartProds,
+            name: inputs.name.value,
+            email: inputs.signEmail.value,
+            tel: inputs.tel.value,
+            delivery: inputs.delivery.value,
+            sum,
+            date: originOrder.date,
+            number: originOrder.number,
+            status: inputs.status.value,
+            usersComment: originOrder.usersComment,
+            userId: originOrder.userId,
+            adminComment: inputs.adminComment.value,
+            adminId: auth.id
+        }
+        Rest.update(orderToSend, "orders", originOrder.id, auth.idToken)
+        .then(response => response.json())
+        .then(result => {
+            if (result.error) handleError(inputs, result.error)
+            else {
+                inputs.postAdminOrder.innerText = `Заказ ${orderToSend.number + originOrder.id.substr(-3)} изменён`
+            }
+        })
+    }
+    else handleError(inputs, "Войдите чтобы продолжить")
 }

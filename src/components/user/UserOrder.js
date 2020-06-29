@@ -2,8 +2,6 @@ import React from 'react'
 import Order from '../order/Order'
 
 export default function UserOrder(props) {
-    console.log(props.order)
-    let cartProds = props.order.cartProds
     let orderInfo = [{
         "name": props.order.name,
         "email": props.order.email,
@@ -18,7 +16,7 @@ export default function UserOrder(props) {
     return (
         <Order
             auth={props.auth}
-            cartProds={cartProds}
+            cartProds={props.order.cartProds}
             orderInfo={orderInfo}
          />
     )

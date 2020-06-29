@@ -48,7 +48,7 @@ export default function OrderList(props) {
                 <tr key={index} className="orderForList">
                     <td>
                         <a href={`#adminorder/${order.id}`}>
-{order.number} / {new Date(order.date).toLocaleTimeString()}
+{order.number + order.id.substr(-3)} / {new Date(order.date).toLocaleTimeString()}
                         </a>
                     </td>
                     <td>{order.email}</td>
@@ -83,7 +83,8 @@ export default function OrderList(props) {
         check = false
     }
     function getOrdersByDate(e) {
-        getFilteredOrders("date", e.target.value)
+        // console.log(e.target.value.substr(2).replace("-","").replace("-",". ").concat("."))
+        getFilteredOrders("number", e.target.value.substr(2).replace("-","").replace("-",". ").concat("."))
     }
     function getFilteredOrders(orderBy, equalTo) {
         if (!equalTo) fetchOrders()

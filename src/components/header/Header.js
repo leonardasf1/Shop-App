@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
 
-// import SearchBar from '../SearchBar'
 import CatalogBar from '../CatalogBar'
 import './style.scss'
 import { useDispatch } from 'react-redux'
 import { deleteAuth } from '../../redux/appReducer'
-// import { logout } from '../auth/Auth'
 
 let dispatch = {}
 
@@ -75,8 +73,6 @@ export default function Header(props) {
             </a></span>
           }
           <a className="cd-nav-trigger">Menu<span></span></a>
-          
-          {/* <SearchBar setSearchState={props.setSearchState} /> */}
           
         </div>
       </header>

@@ -46,7 +46,7 @@ export default function Order(props) {
             <div>
             <form id="tosend" className="form"
                 onSubmit={(e) => {
-                    if (!orderInfo.number) handleOrder(e, props.cartProds, sum, props.auth)
+                    if (!orderInfo.number) handleOrder(e, props.cartProds, sum, props.auth, dispatch)
                     if (orderInfo.number) e.preventDefault()
                 }}>
             <div>
@@ -107,7 +107,7 @@ export default function Order(props) {
 
     useEffect(() => {
         window.scroll(0, 0)
-        listenForms(dispatch, props.orderInfo)
+        listenForms(dispatch)
     }, [])
     
     return page

@@ -57,7 +57,7 @@ export default function ProdList(props) {
       {list}
     </div>
     {props.loading && <Loader />}
-    {props.lastProds.length &&
+    {!!props.lastProds.length &&
     props.lastProds[0].index > 1 &&
     <button
         className="btn-primary"

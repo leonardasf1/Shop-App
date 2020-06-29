@@ -3,6 +3,7 @@ const CART_DEL = 'CART/CART_DEL'
 const CART_PLUS = 'CART/CART_PLUS'
 const CART_MINUS = 'CART/CART_MINUS'
 const CART_CHANGE = 'CART/CART_CHANGE'
+const CART_CLEAR = 'CART/CART_CLEAR'
 const ORDER_INFO = 'CART/ORDER_INFO'
 
 const initialState = {
@@ -50,7 +51,12 @@ export const cartReducer = (state = initialState, action) => {
                     }
                     return elem
                 } ) }
-
+        
+        case CART_CLEAR:
+            return { ...state,
+                cartProds: [],
+                orderInfo: []
+            }
         case ORDER_INFO:
             let info = state.orderInfo[0] || {}
 
@@ -110,5 +116,10 @@ export function saveOrderInfo(e) {
     return {
         type: ORDER_INFO,
         payload: [e.target.name, e.target.value]
+    }
+}
+export function clearOrderState() {
+    return {
+        type: CART_CLEAR
     }
 }
