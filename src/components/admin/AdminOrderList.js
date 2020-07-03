@@ -84,7 +84,7 @@ export default function OrderList(props) {
     }
     function getOrdersByDate(e) {
         // console.log(e.target.value.substr(2).replace("-","").replace("-",". ").concat("."))
-        getFilteredOrders("number", e.target.value.substr(2).replace("-","").replace("-",". ").concat("."))
+        getFilteredOrders("number", e.target.value.substr(2).replace("-","").replace("-","").concat("."))
     }
     function getFilteredOrders(orderBy, equalTo) {
         if (!equalTo) fetchOrders()

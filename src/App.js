@@ -16,7 +16,7 @@ import AdminProd from './components/admin/AdminProd';
 import AdminOrderList from './components/admin/AdminOrderList';
 import AdminOrder from './components/admin/AdminOrder';
 import UserOrder from './components/user/UserOrder';
-import SearchBar from './components/SearchBar'
+import Home from './components/Home'
 
 function App() {
 
@@ -62,7 +62,7 @@ function App() {
 
         { (route === '' || route === '#home') &&
         <>
-          <SearchBar />
+          <Home />
           <ProdList
             loading={loading}
             request={`orderBy="index"&limitToLast=3`}
@@ -139,7 +139,7 @@ function App() {
             orders={orders}
           />
         }
-        { orders.length > 1 &&
+        { orders.length > 0 &&
         route === `#adminorder/${window.location.hash.split("#adminorder/")[1]}` &&
         auth.timer > Date.now() &&
         auth.status === 'admin' && //изменить

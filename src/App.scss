@@ -1,19 +1,31 @@
 
-.searchForm {
-  margin-left: auto;
+.homeGallery {
+  padding: .5rem;
+  text-align: center;
+
+  img {
+    max-width: 560px;
+    padding: .5rem;
+  }
 }
 .ProdList {
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+
   > div {
     height: 380px;
     width: calc(320px - 2rem);
     padding: 1rem;
 
+    &:hover {
+      box-shadow: 0 0 50px #0002;
+    }
+
     .sale {
       position: absolute;
-      color: #f95b5b;
+      color: var(--red);
       font-weight: 700;
     }
     img {

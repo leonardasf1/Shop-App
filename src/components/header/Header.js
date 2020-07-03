@@ -21,6 +21,14 @@ export default function Header(props) {
       <header>
         <div>
           <a href="#home" className="logo"><b>Shop App</b></a>
+          <div className="searchForm">
+              <form
+              // onSubmit={handleSubmit}
+              >
+                  <span role="img" aria-label="найти">&#128270;</span>
+                  <input type="text" placeholder="Поиск по каталогу" name="text" />
+              </form>
+          </div>
           <nav className="cd-main-nav-wrapper">
             <ul className="cd-main-nav">
 
@@ -31,6 +39,7 @@ export default function Header(props) {
                 <CatalogBar />
               </ul>
             </li>
+
 
             {(!props.auth ||
             props.auth.status !== 'admin' ||
@@ -104,7 +113,7 @@ function setHeader() {
     q('.cd-main-nav').classList.remove('moves-out')
     q('.cd-main-nav').classList.remove('nav-is-visible')
     q('header').classList.remove('nav-is-visible')
-    if (sessionStorage.auth.timer < Date.now()) logout()
+    if (sessionStorage.auth && sessionStorage.auth.timer < Date.now()) logout()
   })
 }
 

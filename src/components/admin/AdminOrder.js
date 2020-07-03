@@ -1,12 +1,9 @@
 import React from 'react'
 import OrderProduct from '../order/OrderProduct';
 import { setSum, updateOrder } from '../order/script'
-// import { useDispatch } from 'react-redux';
 
 export default function AdminOrder(props) {
-
     let sum = 0;
-    // const dispatch = useDispatch()
 
     return (
     <div className="orderComponent">
@@ -61,9 +58,6 @@ export default function AdminOrder(props) {
                 </div>
                 <div className="textfield--float-label">
                     <input type="text" name="delivery" id="delivery"
-                        // onBlur={(e) => {
-                        //     dispatch(deliveryState(!!e.target.value))
-                        // }}
                         defaultValue={props.order.delivery} />
                     <label>Адрес доставки если нужна доставка</label>
                 </div>
