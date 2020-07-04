@@ -21,14 +21,14 @@ export default function Header(props) {
       <header>
         <div>
           <a href="#home" className="logo"><b>Shop App</b></a>
-          <div className="searchForm">
+          {/* <div className="searchForm">
               <form
               // onSubmit={handleSubmit}
               >
                   <span role="img" aria-label="найти">&#128270;</span>
                   <input type="text" placeholder="Поиск по каталогу" name="text" />
               </form>
-          </div>
+          </div> */}
           <nav className="cd-main-nav-wrapper">
             <ul className="cd-main-nav">
 

@@ -13,7 +13,10 @@ import {
 export default function ProdCard(props) {
     const dispatch = useDispatch()
 
-    useEffect(() => {fetchSeparateProd(dispatch, props.productId) },[props.productId])
+    useEffect(() => {
+        fetchSeparateProd(dispatch, props.productId)
+        window.scroll(0, 0)
+    },[props.productId])
 
     let product = props.product || {}
     let prodColor = '0'

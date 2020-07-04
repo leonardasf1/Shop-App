@@ -24,7 +24,10 @@ function App() {
 
   // const [searchState, setSearchState] = useState({text: '', filter: []});
 
-  useEffect(() => { dispatch(routing()) },[])
+  useEffect(() => {
+    dispatch(routing())
+    // window.scroll(0, 0)
+  },[])
 
   const lastProds = useSelector(
     state => state.prods.lastProds

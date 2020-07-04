@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const banners = {
     "longboard": "linear-gradient(217deg, #cd9059, #80c8bb 70.71%)",
@@ -7,6 +7,8 @@ const banners = {
 
 export default function Categoria() {
     let categName = window.location.hash.split("#categ/")[1]
+
+    useEffect(() => { window.scroll(0, 0) }, [])
 
     const categ = (
 <div className="categ">

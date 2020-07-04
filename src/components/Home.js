@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Rest } from '../modules/fetch'
 import { useDispatch } from 'react-redux'
 import { showLoader, hideLoader, showAlert } from '../redux/appReducer'
@@ -6,6 +6,8 @@ import { setLastProds } from '../redux/prodsReducer'
 
 export default function SearchBar() {
     const dispatch = useDispatch()
+
+    useEffect(() => { window.scroll(0, 0) }, [])
 
     // function handleSubmit(e) {
     //     e.preventDefault()
@@ -23,8 +25,6 @@ export default function SearchBar() {
             <form
             // onSubmit={handleSubmit}
             >
-                <span role="img" aria-label="найти">&#128270;</span>
-                <input type="text" placeholder="Что вы ищете?" name="text" />
 
                 <input type="number"
                 //  onChange={}
