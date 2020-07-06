@@ -99,7 +99,7 @@ export default function Order(props) {
 
     let page2 = (
         <div className="order-emptyCart">
-            <span role="img" aria-label="корзина">&#128722;</span>
+            <img />
             <h3>В вашей корзине нет товаров</h3>
         </div>
     )

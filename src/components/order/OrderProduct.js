@@ -6,6 +6,7 @@ import {
     countPlus,
     countMinus
 } from '../../redux/cartReducer'
+import close from '../../assets/close.svg'
 
 export default function OrderProduct(props) {
     const dispatch = useDispatch()
@@ -15,7 +16,7 @@ export default function OrderProduct(props) {
     return (
         <li>
             <div className="removeIcon" onClick={() => 
-            dispatch(deleteFromCart(props.product))}>𐄂</div>
+            dispatch(deleteFromCart(props.product))}><img src={close} /></div>
             <a
                 href={`#product/${product.id}`}
                 className="img">

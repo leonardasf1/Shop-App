@@ -4,6 +4,7 @@ import CatalogBar from '../CatalogBar'
 import './style.scss'
 import { useDispatch } from 'react-redux'
 import { deleteAuth } from '../../redux/appReducer'
+import basket from '../../assets/basket-white.svg'
 
 let dispatch = {}
 
@@ -76,12 +77,15 @@ export default function Header(props) {
           </nav>
 
           {props.cartProds.length > 0 &&
-            <span><a href="#order" className="whiteCircle">
-            <span role="img" aria-label="корзина">&#128722;</span> 
-            <span className="blackCircle"> {props.cartProds.length} </span>
-            </a></span>
+            <span>
+              <a href="#order" className="basket">
+                <img src={basket} />
+                <span className="basket_count"> {props.cartProds.length} </span>
+              </a>
+            </span>
           }
           <a className="cd-nav-trigger">Menu<span></span></a>
+
           
         </div>
       </header>
