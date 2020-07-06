@@ -79,7 +79,19 @@ table {
 }
 button {
   border: none;
+  opacity: 1;
+  outline: none;
+
+  &:active, &:focus {
+    animation: linear .5s buyAnim;
+  }
 }
 select, input {
   font-size: 16px;
+}
+
+@keyframes buyAnim {
+  from { opacity: 1; }
+  50%  { opacity: .5; }
+  to   { opacity: 1; }
 }
