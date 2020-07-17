@@ -109,7 +109,10 @@ export default function ProdCard(props) {
                         </li>
                     )}
                 </ul>
-                <Rewiews />
+                <Rewiews
+                    auth={props.auth}
+                    productId={props.productId}
+                    rewiews={props.rewiews} />
             </div>
         </div>
     )

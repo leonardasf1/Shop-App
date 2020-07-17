@@ -102,3 +102,23 @@
   font-size: 1rem;
   font-weight: 700;
 }
+.rewiews {
+  padding-top: 1rem;
+}
+#newRewiew > button {
+  padding: 1rem;
+  border-radius: 4px;
+}
+.rewiew {
+  padding: 1rem;
+  border-bottom: 1px solid #0002;
+  color: #0005;
+  font-size: small;
+  font-weight: 700;
+
+  > div {
+    color: var(--main-color);
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}

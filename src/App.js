@@ -35,6 +35,9 @@ function App() {
   const separateProds = useSelector(
     state => state.prods.separateProds
   )
+  const rewiews = useSelector(
+    state => state.prods.rewiews
+  )
   const loading = useSelector(
     state => state.app.loading
   )
@@ -91,7 +94,8 @@ function App() {
               separateProds.find(i => i.id === window.location.hash.split("#product/")[1])
             }
             productId={window.location.hash.split("#product/")[1]}
-            cartProds={cartProds} />
+            cartProds={cartProds}
+            rewiews={rewiews} />
         }
         { (route === '#auth' ||
         route === '#login') &&

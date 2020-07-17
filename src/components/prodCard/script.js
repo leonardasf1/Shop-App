@@ -1,7 +1,7 @@
 import { addToCart } from "../../redux/cartReducer";
 import { Rest } from '../../modules/fetch';
 import { showLoader, showAlert, hideLoader } from '../../redux/appReducer';
-import { setSeparateProds } from '../../redux/prodsReducer';
+import { setSeparateProds, setRewiews } from '../../redux/prodsReducer';
 
 export function clearChoice(choice) {
     document.querySelectorAll(choice).forEach(i => {
@@ -54,6 +54,11 @@ export function fetchSeparateProd(dispatch, productId) {
           dispatch(hideLoader())
           dispatch(setSeparateProds(json))
         }
+    })
+    Rest.getRewiewsByProduct(productId)
+    .then(json => {
+        if (!json) dispatch(setRewiews([]))
+        else dispatch(setRewiews(json))
     })
 }
   

@@ -16,6 +16,8 @@ export function setSum(sum, product) {
     return sum
 }
 
+const a_login = '<a href="#login">Войдите чтобы продолжить</a>'
+
 export function handleOrder(e, cartProds, sum, auth, dispatch) {
     e.preventDefault()
     let inputs = e.target.elements
@@ -50,15 +52,15 @@ export function handleOrder(e, cartProds, sum, auth, dispatch) {
             }
         })
     }
-    else handleError(inputs, "Войдите чтобы продолжить")
+    else handleError(inputs, a_login)
 }
 
 function handleError(inputs, error) {
     console.log(error)
-    if (error !== "Войдите чтобы продолжить") {
+    if (error !== a_login) {
         error = "Что-то пошло не так"
     }
-    inputs.postOrder.innerText = error
+    inputs.postOrder.innerHTML = error
     inputs.postOrder.style.color = 'red'
 }
 
@@ -103,5 +105,5 @@ export function updateOrder(e, originOrder, sum, auth) {
             }
         })
     }
-    else handleError(inputs, "Войдите чтобы продолжить")
+    else handleError(inputs, a_login)
 }

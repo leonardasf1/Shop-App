@@ -80,12 +80,15 @@
       max-width: 500px;
       margin: auto;
     }
-  }
-  .specLi {
-    > span {
-      display: inline-flex;
-      &:first-of-type {
-        width: 150px;
+    ul {
+      padding-top: 1rem;
+      .specLi {
+        > span {
+          display: inline-flex;
+          &:first-of-type {
+            width: 150px;
+          }
+        }
       }
     }
 }

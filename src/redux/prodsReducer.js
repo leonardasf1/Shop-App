@@ -1,17 +1,19 @@
 const LAST_PRODS = 'PRODS/LAST_PRODS'
 const MORE_PRODS = 'PRODS/MORE_PRODS'
 const SEPARATE_PRODS = 'PRODS/SEPARATE_PRODS'
+const REWIEWS = 'PRODS/REWIEWS'
 
 const initialState = {
     lastProds: [],
-    separateProds: []
+    separateProds: [],
+    rewiews: []
 }
 
 export const prodsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LAST_PRODS:
             return { ...state,
-                lastProds: action.payload}
+                lastProds: action.payload }
 
         case MORE_PRODS:
             return { ...state,
@@ -20,6 +22,10 @@ export const prodsReducer = (state = initialState, action) => {
         case SEPARATE_PRODS:
             return { ...state,
                 separateProds:  [...action.payload, ...state.separateProds] }
+
+        case REWIEWS:
+            return { ...state,
+                rewiews:  action.payload }
 
         default: return state
     }
@@ -44,6 +50,13 @@ export function setMoreProds(json) {
 export function setSeparateProds(json) {
     return {
         type: SEPARATE_PRODS,
+        payload: jsonToArr(json)
+    }
+}
+
+export function setRewiews(json) {
+    return {
+        type: REWIEWS,
         payload: jsonToArr(json)
     }
 }

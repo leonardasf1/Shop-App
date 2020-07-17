@@ -79,7 +79,7 @@ export default function Header(props) {
           {props.cartProds.length > 0 &&
             <span>
               <a href="#order" className="basket">
-                <img src={basket} />
+                <img src={basket} alt="basket" />
                 <span className="basket_count"> {props.cartProds.length} </span>
               </a>
             </span>
