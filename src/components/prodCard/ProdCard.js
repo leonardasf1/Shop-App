@@ -4,9 +4,13 @@ import './style.scss'
 import ProdConnected from '../ProdConnected';
 import Rewiews from '../Rewiews';
 import {
+    prodColor,
+    prodSize,
+    availableCount,
     setSpecs,
     clearChoice,
     setColors,
+    setProdColor,
     setProdForCart,
     fetchSeparateProd } from './script';
 
@@ -19,9 +23,6 @@ export default function ProdCard(props) {
     },[props.productId])
 
     let product = props.product || {}
-    let prodColor = '0'
-    let prodSize = 'не выбран'
-    let availableCount = 0
 
     let page = (
         <div className="prodCard">
@@ -48,7 +49,7 @@ export default function ProdCard(props) {
                         <span>Цвет: <b className="color">
                             {product['color@0']}</b>
                         </span>
-                        <div className="divImg54">
+                        <div className="divImg54" id="prodColors">
                         {setColors(product).map( (i, index) =>
                             <img
                             key={i}
@@ -78,18 +79,11 @@ export default function ProdCard(props) {
                             clearChoice('.size > div')
                             setProdForCart(
                                 dispatch,
-                                product,
                                 props.cartProds,
                                 prodColor,
                                 prodSize,
                                 availableCount
                                 )
-                            // dispatch(addToCart(
-                            //     product,
-                            //     props.cartProds,
-                            //     prodColor,
-                            //     prodSize
-                            //     ))
                             }}
                         ><b>купить</b></button>
                         <div className="availableCount">В наличии</div>
@@ -102,7 +96,7 @@ export default function ProdCard(props) {
                 <p>{product.description}</p>
                 <span>Характеристики:</span>
                 <ul>
-                    {setSpecs(product).map( (i,index) => 
+                    {setSpecs().map( (i,index) =>
                         <li className="specLi" key={index}>
                             <span>{i.split(':')[0]}:</span>
                             <span> {i.split(':')[1]}</span>
@@ -123,46 +117,4 @@ export default function ProdCard(props) {
             <ProdConnected />
         </div>
     )
-
-    function setProdSize(e) {
-        prodSize = e.target.textContent
-        clearChoice('.size > div')
-        e.target.style.borderColor = "#00adee"
-        availableCount = 0
-        let shopsCount = []
-        product['size@' + prodColor].split(',').map(i => {
-            if (i.split('-')[0].trim() === prodSize) {
-                shopsCount.push(
-                    `<div>Магазин №${i.split('-')[1].trim()} : ${i.split('-')[2].trim()}</div>`
-                )
-                availableCount += +(i.split('-')[2].trim())
-            }
-        })
-        document.querySelector('.availableCount').innerHTML = shopsCount.join('')
-    }
-    
-    function setProdColor(e, color, colorIndex) {
-        prodColor = colorIndex
-        clearChoice('.divImg54 > img')
-        e.target.style.borderColor = "#00adee"
-        document.querySelector('.color').innerText = color
-        document.querySelector('.availableCount').innerText = ''
-        
-        document.querySelector('.price').innerText =
-        (product['price@' + colorIndex] || product.price) *
-        (100 - (product['sale@' + colorIndex] || product.sale || 0)) / 100
-    
-        let sizes = []
-        let prev = ''
-        product['size@' + colorIndex].split(',').map(i => {
-            if (i.split('-')[0].trim() !== prev) sizes.push(
-                `<div>${i.split('-')[0].trim()}</div>`
-                )
-            prev = i.split('-')[0].trim()
-        })
-        document.querySelector('.size').innerHTML = sizes.join('')
-        document.querySelectorAll('.size > div').forEach(div => {
-            div.addEventListener('click', setProdSize)
-        });
-    }
 }
