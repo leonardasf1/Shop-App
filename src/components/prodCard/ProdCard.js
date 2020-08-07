@@ -4,7 +4,6 @@ import './style.scss'
 import ProdConnected from '../ProdConnected';
 import Rewiews from '../Rewiews';
 import {
-    prodColor,
     prodSize,
     availableCount,
     setSpecs,
@@ -80,7 +79,6 @@ export default function ProdCard(props) {
                             setProdForCart(
                                 dispatch,
                                 props.cartProds,
-                                prodColor,
                                 prodSize,
                                 availableCount
                                 )

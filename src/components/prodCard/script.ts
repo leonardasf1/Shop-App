@@ -7,7 +7,7 @@ interface Iproduct {
     [x: string]: any;
 }
 
-export let prodColor: number = 0
+export let prodColor: string = '0'
 export let prodSize: string = 'не выбран'
 export let availableCount: number = 0
 let product: Iproduct = {}
@@ -62,15 +62,15 @@ export function setColors(producT: Iproduct): string[] {
 export function setProdForCart(
     dispatch: (arg0: { type: string; payload: any; }) => void,
     cartProds: any[],
-    color: string,
+    // color: string,
     size: string,
     availableCount: number,
 ): void {
     let prodForCart = {
-        "id": product.id + "@" + color + "@" + size,
+        "id": product.id + "@" + prodColor + "@" + size,
         "count": 1,
         product,
-        color,
+        "color": prodColor,
         size,
         availableCount
     }
@@ -102,7 +102,7 @@ function setProdSize(e: any): void {
     product['size@' + prodColor].split(',').map((i: string) => {
         if (i.split('-')[0].trim() === prodSize) {
             shopsCount.push(
-                `<div>Магазин №${i.split('-')[1].trim()} : ${i.split('-')[2].trim()}</div>`
+                `<div>МагазинN №${i.split('-')[1].trim()} : ${i.split('-')[2].trim()}</div>`
             )
             availableCount += +(i.split('-')[2].trim())
         }
@@ -115,7 +115,7 @@ export function setProdColor(
     color: string,
     colorIndex: number
 ): void {
-    prodColor = colorIndex
+    prodColor = colorIndex.toString()
     clearChoice('.divImg54 > img')
     if ( e !== null && e.target ) {
         e.target.style.borderColor = "#00adee"
@@ -128,18 +128,18 @@ export function setProdColor(
         (+product['price@' + colorIndex] || +product.price) *
         (100 - (+product['sale@' + colorIndex] || +product.sale || 0)) / 100
 
-        let sizes: string[] = []
-        let prev = ''
-        product['size@' + colorIndex].split(',').map((i: string) => {
-            if (i.split('-')[0].trim() !== prev) sizes.push(
-                `<div>${i.split('-')[0].trim()}</div>`
-                )
-            prev = i.split('-')[0].trim()
-        })
+    let sizes: string[] = []
+    let prev = ''
+    product['size@' + colorIndex].split(',').map((i: string) => {
+        if (i.split('-')[0].trim() !== prev) sizes.push(
+            `<div>${i.split('-')[0].trim()}</div>`
+        )
+        prev = i.split('-')[0].trim()
+    })
 
     q('.size').innerHTML = sizes.join('')
-        document.querySelectorAll('.size > div').forEach(div => {
-            div.addEventListener('click', (e) => setProdSize(e))
-        });
+    document.querySelectorAll('.size > div').forEach(div => {
+        div.addEventListener('click', setProdSize)
+    });
 
 }
