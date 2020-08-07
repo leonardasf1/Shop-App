@@ -17,6 +17,8 @@ import AdminOrderList from './components/admin/AdminOrderList';
 import AdminOrder from './components/admin/AdminOrder';
 import UserOrder from './components/user/UserOrder';
 import Home from './components/Home'
+import Contacts from "./components/Contacts";
+import About from "./components/About";
 
 function App() {
 
@@ -162,6 +164,12 @@ function App() {
             auth={auth}
             order={orders.find(i => i.id === window.location.hash.split("#userorder/")[1])}
           />
+        }
+        { route === `#about` &&
+        <About />
+        }
+        { route === `#contacts` &&
+            <Contacts />
         }
       </main>
       <Footer />

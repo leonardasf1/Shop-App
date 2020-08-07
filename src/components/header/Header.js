@@ -46,10 +46,10 @@ export default function Header(props) {
             props.auth.status !== 'admin' ||
             props.auth.timer < Date.now()) &&
             <>
-              <li><a href="#0">О нас</a></li>
+              <li><a href="#about">О нас</a></li>
               {/* <li><a href="#0">Проекты</a></li>
               <li><a href="#0">Блог</a></li> */}
-              <li><a href="#0">Контакты</a></li>
+              <li><a href="#contacts">Контакты</a></li>
             </>
             }
             {(!props.auth ||
