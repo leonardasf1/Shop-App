@@ -36,7 +36,7 @@ export default function Header(props) {
             <li>
               <a className="cd-subnav-trigger"><span>Категории</span></a>
               <ul>
-                <li className="go-back"><a>Меню</a></li>
+                <li className="go-back"><div>Меню</div></li>
                 <CatalogBar />
               </ul>
             </li>
