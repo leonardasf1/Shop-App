@@ -99,9 +99,11 @@ function App() {
             cartProds={cartProds}
             rewiews={rewiews} />
         }
-        { (route === '#auth' ||
-        route === '#login') &&
-        (!auth || auth.timer < Date.now()) &&
+        { route === ('#auth' || '#login' || '#admin' || `#adminOrderList` ||
+          `#admin/${window.location.hash.split("#admin/")[1]}` ||
+          `#adminorder/${window.location.hash.split("#adminorder/")[1]}` ||
+          '#user' || `#userorder/${window.location.hash.split("#userorder/")[1]}`) &&
+          (!auth || auth.timer < Date.now()) &&
           <Auth method={loginHTML} />
         }
         {route === '#signup' &&

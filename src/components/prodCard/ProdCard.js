@@ -72,7 +72,7 @@ export default function ProdCard(props) {
 
                         </div>
                         <button
-                        className="buy"
+                        className="buy btn-primary"
                         onClick={() => {
                             clearChoice('.divImg54 > img')
                             clearChoice('.size > div')

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setOrders } from '../../redux/appReducer'
 import { Rest } from '../../modules/fetch'
+import './style.scss'
 
 export default function User(props) {
 
@@ -10,7 +11,7 @@ export default function User(props) {
     useEffect(() => { getOrdersByUser() },[])
 
     return (
-        <div>
+        <div className="userContainer">
             <h2>Личный кабинет</h2>
             <ul>
                 <li>Имя: {props.auth.name}</li>

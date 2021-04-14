@@ -28,6 +28,10 @@ header {
         padding: 15px;
       }
     }
+    
+    .btn:hover {
+      opacity: .6;
+    }
 }
 
 .basket {
@@ -177,6 +181,7 @@ header {
   .go-back div {
     padding: 21px 3em;
     border-bottom: 1px solid #fff2;
+    cursor: pointer;
   }
   .go-back div::before, .go-back div::after {
     /* arrow goes on the left side - go back button */
@@ -216,9 +221,9 @@ header {
           transform: translateZ(0);
           transition: opacity 0.2s;
 
-          &:not(.cd-subnav-trigger):hover {
-            opacity: .6;
-          }
+          // &:hover {
+          //   opacity: .6;
+          // }
         }
         ul {
           width: max-content;

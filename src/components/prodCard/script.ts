@@ -102,7 +102,7 @@ function setProdSize(e: any): void {
     product['size@' + prodColor].split(',').map((i: string) => {
         if (i.split('-')[0].trim() === prodSize) {
             shopsCount.push(
-                `<div>МагазинN №${i.split('-')[1].trim()} : ${i.split('-')[2].trim()}</div>`
+                `<div>Магазин №${i.split('-')[1].trim()} : ${i.split('-')[2].trim()}</div>`
             )
             availableCount += +(i.split('-')[2].trim())
         }

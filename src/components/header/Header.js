@@ -21,7 +21,7 @@ export default function Header(props) {
     return (
       <header>
         <div>
-          <a href="#home" className="logo"><b>Shop App</b></a>
+          <a href="#home" className="logo btn"><b>Shop App</b></a>
           {/* <div className="searchForm">
               <form
               // onSubmit={handleSubmit}
@@ -34,9 +34,9 @@ export default function Header(props) {
             <ul className="cd-main-nav">
 
             <li>
-              <a className="cd-subnav-trigger"><span>Категории</span></a>
+              <a className="cd-subnav-trigger btn"><span>Категории</span></a>
               <ul>
-                <li className="go-back"><div>Меню</div></li>
+                <li className="go-back btn"><div>Меню</div></li>
                 <CatalogBar />
               </ul>
             </li>
@@ -46,31 +46,31 @@ export default function Header(props) {
             props.auth.status !== 'admin' ||
             props.auth.timer < Date.now()) &&
             <>
-              <li><a href="#about">О нас</a></li>
+              <li><a href="#about" className="btn">О нас</a></li>
               {/* <li><a href="#0">Проекты</a></li>
               <li><a href="#0">Блог</a></li> */}
-              <li><a href="#contacts">Контакты</a></li>
+              <li><a href="#contacts" className="btn">Контакты</a></li>
             </>
             }
             {(!props.auth ||
             props.auth.timer < Date.now()) && 
-              <li><a href="#auth">Войти</a></li>
+              <li><a href="#auth" className="btn">Войти</a></li>
             }
             {props.auth.timer > Date.now() && 
-              <li><a href="#user">{props.auth.name}</a></li>
+              <li><a href="#user" className="btn">{props.auth.name}</a></li>
             }
             {props.auth.timer > Date.now() && 
-              <li><a href="#home" onClick={logout}>Выйти</a></li>
+              <li><a href="#home" className="btn" onClick={logout}>Выйти</a></li>
             }
 
             {props.auth.timer > Date.now() &&
             props.auth.status === 'admin' &&
             // props.auth.id === 'adminId' &&
-              <li><a href="#adminOrderList">Заказы</a></li>
+              <li><a href="#adminOrderList" className="btn">Заказы</a></li>
             } {/* исправить */}
             {props.auth.timer > Date.now() &&
             props.auth.status === 'admin' &&
-              <li><a href="#admin">Добавить новый товар</a></li>
+              <li><a href="#admin" className="btn">Добавить новый товар</a></li>
             } {/* исправить */}
 
             </ul>
@@ -78,13 +78,13 @@ export default function Header(props) {
 
           {props.cartProds.length > 0 &&
             <span>
-              <a href="#order" className="basket">
+              <a href="#order" className="basket btn">
                 <img src={basket} alt="basket" />
                 <span className="basket_count"> {props.cartProds.length} </span>
               </a>
             </span>
           }
-          <a className="cd-nav-trigger">Menu<span></span></a>
+          <a className="cd-nav-trigger btn">Menu<span></span></a>
 
           
         </div>

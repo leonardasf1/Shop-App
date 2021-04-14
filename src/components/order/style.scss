@@ -3,6 +3,10 @@
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(320px, 560px));
     justify-content: center;
+
+    h2, h3 {
+        margin-inline-start: 1rem;
+    }
 }
 
 .cartForm {

@@ -74,7 +74,6 @@
 .categ_banner {
   height: 20vw;
   min-height: 150px;
-  // background-position: center;
   display: grid;
   align-items: center;
   color: #fff;
@@ -95,12 +94,22 @@
 }
 
 .btn-primary {
-  padding: 1rem;
+  padding: 6px 16px;
   display: flex;
-  margin: auto;
+  margin: 8px auto;
   border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: #34347722;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  &:hover {
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+    background-color: #d5d5d5;
+  }
 }
 .rewiews {
   padding-top: 1rem;
