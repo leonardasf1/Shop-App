@@ -82,7 +82,6 @@
   svg {
     height: 20vw;
     min-height: 150px;
-    position: absolute;
     width: 100%;
   }
 
@@ -90,6 +89,8 @@
     text-transform: uppercase;
     text-align: center;
     z-index: 0;
+    position: absolute;
+    width: 100%;
   }
 }
 
