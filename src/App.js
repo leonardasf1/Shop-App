@@ -99,7 +99,7 @@ function App() {
             cartProds={cartProds}
             rewiews={rewiews} />
         }
-        { route === ('#auth' || '#login' || '#admin' || `#adminOrderList` ||
+        { route === ('#auth' || '#admin' || `#adminOrderList` ||
           `#admin/${window.location.hash.split("#admin/")[1]}` ||
           `#adminorder/${window.location.hash.split("#adminorder/")[1]}` ||
           '#user' || `#userorder/${window.location.hash.split("#userorder/")[1]}`) &&

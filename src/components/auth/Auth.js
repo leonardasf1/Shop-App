@@ -78,7 +78,7 @@ export const signupHTML = (
   </div>
   <div className="form__comment">
     <button type="submit" id="do_signup">Зарегистрироваться</button>
-    <div>Уже есть аккаунт? <a href="#login" id="a_login">Войти</a></div>
+    <div>Уже есть аккаунт? <a href="#auth" id="a_login">Войти</a></div>
     Нажимая кнопку «Зарегистрироваться»:
     <div>
       <input name="agreement" type="checkbox" required defaultChecked />

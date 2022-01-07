@@ -27,7 +27,9 @@ export default function Rewiews(props) {
     function postNewRewiew(e) {
         e.preventDefault()
     
-        if (props.auth.timer > Date.now()) {
+        if ((props.auth.timer > Date.now()) &&
+            e.target.elements.textRewiew.value &&
+            (e.target.elements.textRewiew.value != 'Успешно опубликовано')) {
             
             let rewiewToSend = {
                 text: e.target.elements.textRewiew.value,
@@ -37,7 +39,7 @@ export default function Rewiews(props) {
             }
             Rest.new(rewiewToSend, "rewiews", props.auth.idToken)
             .then(() => {
-                e.target.elements.textRewiew.value = ''
+                e.target.elements.textRewiew.value = 'Успешно опубликовано';
             })
         }
     }

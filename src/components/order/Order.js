@@ -87,7 +87,7 @@ export default function Order(props) {
                 </button>
 
                 { (!props.auth || props.auth.timer < Date.now()) &&
-                <div>Для оформления заказа необходимо <a href="#login" id="a_login">Войти</a></div>
+                <div>Для оформления заказа необходимо <a href="#auth" id="a_login">Войти</a></div>
                 }
                 
             </div>
