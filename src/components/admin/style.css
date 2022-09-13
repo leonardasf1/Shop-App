@@ -1,0 +1,30 @@
+.product-form #form {
+		display: flex;
+		flex-wrap: wrap;
+}
+		.product-form #form .textfield--float-label {
+			margin-bottom: 0;
+}
+		.product-form #form .textfield--float-label input {
+				margin-bottom: 15px;
+}
+
+.colorFieldList {
+	border: #0081 20px solid;
+	padding: 8px;
+	margin: 8px;
+}
+.field-article,
+.field-brand,
+.field-sale,
+.field-sex,
+.field-price,
+.field-categ {
+	width: 200px;
+	margin: .5rem;
+}
+.field-title,
+.field-img200,
+.field-description {
+	width: 100%;
+}

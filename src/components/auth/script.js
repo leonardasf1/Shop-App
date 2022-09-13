@@ -81,7 +81,7 @@ export function signupFormHandler(e, dispatch) {
       } else {
 
         dispatch(hideLoader())
-        window.location.hash = "#login"
+        window.location.hash = "#auth"
         Rest.newUser( 
           name.value,
           email.value,
@@ -124,7 +124,7 @@ export function validAuth(e) {
         errorHandler(e.target, 'Ограничение 18 символов')
         //для международных вызовов на коммутаторах ограничение 18
     } else if (
-        e.target.name === 'pas' &&
+        e.target.name === 'password' &&
         (e.target.value.length < 9 ||
         e.target.value.length > 29)) {
         errorHandler(e.target, 'Ограничение 9-29 символов')

@@ -2,6 +2,7 @@ import React from 'react'
 import { addField,
     addProdColor,
     setNewProduct } from './script'
+import './style.css'
 
 export default function Admin(props) {
 
@@ -11,12 +12,10 @@ export default function Admin(props) {
     if (props.prod) savedProduct = props.prod
 
     const fieldList = [
-        "article",
         "title",
-        "brand",
-        "img",
         "img200",
-        "img54",
+        "article",
+        "brand",
         "price",
         "sale",
         "categ",
@@ -25,20 +24,29 @@ export default function Admin(props) {
     const colorFieldList = [
         "color",
         "img",
-        "img200",
         "img54",
         "price",
         "sale",
         "size"
     ]
+    let countSpec = 1
+    let countSpecArr = new Array();
+    (() => {
+        while (savedProduct["spec" + countSpec]) {
+          countSpecArr.push(countSpec)
+          countSpec ++
+        }
+        countSpec--
+    })();
 
     const formHTML = (
 <div className="product-form">
+
     <form id="form">
 
         {
         fieldList.map(i => 
-        <div className="textfield--float-label" key={i}>
+        <div className={"textfield--float-label field-"+i} key={i}>
             <input type="text" required
             defaultValue={
                 savedProduct !== undefined ?
@@ -47,7 +55,7 @@ export default function Admin(props) {
         </div>
         )}
 
-        <div className="textfield--float-label">
+        <div className="textfield--float-label field-description">
             <textarea
             type="text"
             id="article-text-input"
@@ -59,17 +67,32 @@ export default function Admin(props) {
             <label>description</label>
         </div>
 
-        <div className="textfield--float-label">
+        <div className="textfield--float-label" id="specs">
             Характеристики:
-            <ul><button onClick={(e) =>
-                addField(e, savedProduct)
-            }>+</button></ul>
+            <ul>{countSpecArr.map(i => 
+              <li className="textfield--float-label" key={"spec" + i}>
+                <input type="text" defaultValue={
+                    savedProduct["spec" + i]
+                } />
+                <label>{'spec' + i}</label>
+              </li>)}
+              <button onClick={(e) => {
+                  e.preventDefault()
+                  countSpec ++
+                  e.target.insertAdjacentHTML('beforebegin', `
+                <li class="textfield--float-label" key="spec${countSpec}">
+                  <input type="text">
+                  <label>spec${countSpec}</label>
+                </li>`)
+              }}>+</button>
+            </ul>
         </div>
 
         <div>
-            Наличие:
-            <div>{colorFieldList.map(i => 
-                <div className="textfield--float-label" key={i + '@0'}>
+            Наличие цвета и размера:
+            <div className="colorFieldList">
+            {colorFieldList.map(i => 
+                <div className={"textfield--float-label field-"+i} key={i + '@0'}>
                     <input type="text"
                     defaultValue={
                         savedProduct !== undefined ?
@@ -88,7 +111,8 @@ export default function Admin(props) {
         className="mui-btn"
         onClick={(e) => setNewProduct(
             e, props.auth,
-            props.prod && props.prod.id,
+            props.prod && savedProduct.id,
+            props.prod && savedProduct.index,
             props.newIndex)}
         > Опубликовать</button>
 

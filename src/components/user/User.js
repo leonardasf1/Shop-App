@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { setOrders } from '../../redux/appReducer'
 import { Rest } from '../../modules/fetch'
-import './style.scss'
+import './style.css'
 
 export default function User(props) {
 

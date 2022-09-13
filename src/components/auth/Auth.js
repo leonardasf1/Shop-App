@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import './style.scss'
+import './style.css'
 import { loginFormHandler, signupFormHandler, validAuth } from './script'
 import { useDispatch } from 'react-redux'
 // import { deleteAuth } from '../../redux/appReducer'
@@ -71,7 +71,7 @@ export const signupHTML = (
       </div>
       <div className="textfield--float-label">
         <span className="error"></span>
-        <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="tel" id="tel" />
+        <input type="tel" name="tel" id="tel" />
     	<label>Номер мобильного телефона</label>
       </div>
     </div>

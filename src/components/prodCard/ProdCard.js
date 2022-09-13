@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import './style.scss'
+import './style.css'
 import ProdConnected from '../ProdConnected';
 import Rewiews from '../Rewiews';
 import {
@@ -34,7 +34,7 @@ export default function ProdCard(props) {
 
                 <div className="prodCard_block1_img">
                     <div className="sale">{product.sale && `-${product.sale}%`}</div>
-                    <img src={product.img} alt="" />
+                    <img src="" alt="" />
                 </div>
 
                 <div className="prodCard_block1_info">

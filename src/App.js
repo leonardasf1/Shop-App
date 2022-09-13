@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import './App.scss';
+import './App.css';
 import Auth, { loginHTML, signupHTML } from './components/auth/Auth';
 import Categoria from './components/Categoria';
 import Footer from './components/Footer';
@@ -83,7 +83,7 @@ function App() {
           <Categoria />
           <ProdList
             loading={loading}
-            request={`orderBy="categ"&equalTo="${window.location.hash.split("#categ/")[1]}"&limitToLast=3`}
+            request={`orderBy="categ"&equalTo="${window.location.hash.split("#categ/")[1]}"&limitToLast=10`}
             lastProds={lastProds} />
         </>
         }

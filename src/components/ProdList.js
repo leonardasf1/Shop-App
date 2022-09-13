@@ -57,13 +57,13 @@ export default function ProdList(props) {
       {list}
     </div>
     {props.loading && <Loader />}
-    {!!props.lastProds.length &&
-    props.lastProds[0].index > 1 &&
-    <button
-        className="btn-primary"
-        onClick={() => fetchProds(`orderBy="index"&startAt=${props.lastProds[0].index - 3}&endAt=${props.lastProds[0].index - 1}`, setMoreProds)}
-    >Ещё</button>}
     </>
+    // {!!props.lastProds.length &&
+    // props.lastProds[0].index > 1 &&
+    // <button
+    //     className="btn-primary"
+    //     onClick={() => fetchProds(`orderBy="categ"&startAt=${props.lastProds[0].index - 3}&endAt=${props.lastProds[0].index - 1}`, setMoreProds)}
+    // >Ещё</button>}
   )
 }
 

@@ -17,6 +17,7 @@ export default function OrderList(props) {
             <thead>
                 <tr>
                     <td>
+                        Номер и время заказа<br />
                         <input type="date" onChange={getOrdersByDate} />
                         <button onClick={fetchOrders}>сброс</button>
                     </td>
@@ -26,6 +27,7 @@ export default function OrderList(props) {
                         onChange={() => check = true} />
                     </td>
                     <td>
+                        Статус заказа<br />
                         <select name="status" id="status"
                             onChange={getOrdersByStatus}
                             >

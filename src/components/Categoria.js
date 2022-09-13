@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 const banners = {
+    "narbut": "linear-gradient(217deg, #cd9059, #69a 70.71%)",
     "longboard": "linear-gradient(217deg, #cd9059, #80c8bb 70.71%)",
     "bicycle": "linear-gradient(217deg, #69a, #efd199 70.71%)"
 }
@@ -24,9 +25,9 @@ export default function Categoria() {
             <circle cx="75vw" cy="10vw" r="10vw" fill="#fff2"></circle>
         </svg>}
         <h1>
+            {categName === "narbut" && "Нарбут"}
             {categName === "longboard" && "Лонгборды"}
             {categName === "bicycle" && "Велосипеды"}
-            {categName === "0" && "Категория 3"}
         </h1>
     </div>
 </div>

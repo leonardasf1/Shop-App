@@ -3,134 +3,119 @@
     grid-gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(320px, 560px));
     justify-content: center;
-
-    h2, h3 {
-        margin-inline-start: 1rem;
-    }
+}
+.orderComponent h2,
+.orderComponent h3 {
+    margin-inline-start: 1rem;
 }
 
-.cartForm {
-    > div {
-        // width: 560px;
-        // max-width: 90vw;
+.cartForm > div {
+        /*width: 560px;*/
+        /*max-width: 90vw;*/
         border: 1px solid #eee;
         padding: 20px;
         margin: 0 0 20px;
-        > li {
+    }
+.cartForm > div > li {
             display: table;
             width: 100%;
-
-            + li {
+}
+.cartForm > div > li + li {
                 border-top: 1px solid #e5e5e5;
                 padding: 24px 0 0;
                 margin: 16px 0 0;
             }
-            .img {
+.cartForm > div > li .img {
                 float: left;
                 margin: 6px 30px 40px 10px;
-
-                img {
+}
+.cartForm > div > li .img img {
                     height: 55px;
-                }
             }
-            .article {
+.cartForm > div > li .article {
                 font-size: 12px;
                 color: #bfbfbf;
                 margin: 4px 0 10px;
             }
-            > div {
+.cartForm > div > li > div {
                 display: flex;
                 float: left;
                 padding: 14px 0;
                 font-weight: 700;
-
-                > input.count, > .countMinus, > .countPlus {
+}
+.cartForm > div > li > div > input.count,
+.cartForm > div > li > div > .countMinus,
+.cartForm > div > li > div > .countPlus {
                     width: 23px;
                     height: 23px;
                     border: 1px solid #eaeaea;
                     text-align: center;
                     font-size: 13px;
                 }
-                > .countMinus, > .countPlus {
+.cartForm > div > li > div > .countMinus,
+.cartForm > div > li > div > .countPlus {
                     color: #00adee;
                     background: #d9f3fd;
                     cursor: pointer;
                     font-size: 15px;
-                }
             }
-            .removeIcon {
+.cartForm > div > li .removeIcon {
                 float: right;
                 padding: 0;
                 height: 20px;
                 width: 20px;
             }
-            .available {
+.cartForm > div > li .available {
                 padding: 16px 0 16px 16px;
                 display: inline-block;
                 font-size: .8rem;
                 color: #00adeec0;
             }
-            .price {
+.cartForm > div > li .price {
                 float: right;
                 padding: 13px 0 13px 13px;
-            }
-        }
-    } 
 }
-
-.orderForm {
-    > div {
-        // width: 560px;
-        // max-width: 90vw;
+.orderForm > div {
+        /*width: 560px;*/
+        /*max-width: 90vw;*/
         border: 1px solid #eee;
         padding: 20px;
         margin: 0 0 20px;
-
-        > .form {
+}
+.orderForm > div > .form {
             width: 100%;
-
-            a {
+}
+.orderForm > div > .form a {
                 color: #3d71bd;
                 transition: color .15s ease-out;
-
-                &:hover {
+}
+.orderForm > div > .form a:hover {
                     color: var(--red);
                     text-shadow: none;
-                }
-            }
-        }
-    }
 }
 
 .order-emptyCart {
     padding: 2rem;
     text-align: center;
-
-    span {
+}
+.order-emptyCart span {
         font-size: 5rem;
     }
-    h3 {
+.order-emptyCart h3 {
         margin-inline-start: 0;
-    }
 }
-.orderList {
-    // max-width: 500px;
-
-    table {
-        margin: 0 auto;
+.orderList table {
+        margin: 48px auto;
     }
-    tr {
+.orderList tr {
         line-height: 48px;
         white-space: nowrap;
-
-        td {
+}
+.orderList tr td {
             padding: 0 1rem;
         }
-    
-        .orderForList-product {
+.orderList tr .orderForList-product {
             overflow: auto;
-        }
-    }
 }
 @media (max-width: 400px) {
     .orderForList-product {

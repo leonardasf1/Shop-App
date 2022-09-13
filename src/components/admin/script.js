@@ -1,19 +1,44 @@
 import { Rest } from "../../modules/fetch"
 
-let countSpec = 0
-    
-export function addField(e, savedProduct) {
-    e.preventDefault()
-    countSpec ++
-    e.target.parentNode.insertAdjacentHTML('beforeend', `
-  <li class="textfield--float-label">
-    <input type="text" value="${
-        savedProduct !== undefined && savedProduct["spec" + countSpec] ?
-        savedProduct["spec" + countSpec] : ''
-    }">
-    <label>spec${countSpec}</label>
-  </li>`)
-}
+// let countSpec = 1
+
+// export function setSpecs(savedProduct) {
+// console.log("setSpecs", countSpec, savedProduct["spec" + countSpec])
+//     while (savedProduct["spec" + countSpec]) {
+//         document.querySelector('#specs')
+//          .insertAdjacentHTML('beforeend', `
+//       <li class="textfield--float-label">
+//         <input type="text" value="${
+//             savedProduct["spec" + countSpec]
+//         }">
+//         <label>spec${countSpec}</label>
+//       </li>`)
+//         console.log(countSpec)
+//         countSpec ++
+//     }
+//     countSpec--
+// }
+// export function addField(e, countSpec) {
+//     e.preventDefault()
+//     countSpec ++
+//     e.target.insertAdjacentHTML('beforebegin', `
+//   <li class="textfield--float-label">
+//     <input type="text">
+//     <label>spec${countSpec}</label>
+//   </li>`)
+// }
+// export function addField(e, savedProduct) {
+//     e.preventDefault()
+//     countSpec ++
+//     e.target.parentNode.insertAdjacentHTML('beforeend', `
+//   <li class="textfield--float-label">
+//     <input type="text" value="${
+//         savedProduct !== undefined && savedProduct["spec" + countSpec] ?
+//         savedProduct["spec" + countSpec] : ''
+//     }">
+//     <label>spec${countSpec}</label>
+//   </li>`)
+// }
 
 let countColor = 0
 
@@ -33,7 +58,7 @@ export function addProdColor(e, colorFieldList, savedProduct) {
         e.target.previousElementSibling
         .insertAdjacentHTML('beforeend', `
         <div class="textfield--float-label">
-            <input type="text" value="${
+            <input type="text" defaultValue="${
                 savedProduct !== undefined && savedProduct[i + '@' + countColor] ?
                 savedProduct[i + '@' + countColor] : ''
             }">
@@ -49,7 +74,7 @@ export function addProdColor(e, colorFieldList, savedProduct) {
 //     sessionStorage.setItem("newProduct", JSON.stringify(newProduct))
 // }
 
-export function setNewProduct(e, auth, prodId, newIndex) {
+export function setNewProduct(e, auth, prodId, prodIndex, newIndex) {
     e.preventDefault()
     let inputs = e.target.parentNode.elements
     let newProduct = {};
@@ -64,7 +89,9 @@ export function setNewProduct(e, auth, prodId, newIndex) {
             inputs[i].disabled = true
         }
     }
-    if (newIndex) newProduct.index = newIndex
+    if (newIndex) {
+        newProduct.index = newIndex
+    } else {newProduct.index = +prodIndex}
     
     console.log(newProduct)
     
@@ -75,11 +102,14 @@ export function setNewProduct(e, auth, prodId, newIndex) {
             if (result.error) problem(result.error, eTarget)
             else {
                 sessionStorage.setItem("newProduct", "")
-                problem("Новый товар добавлен в базу", eTarget)
-                for (let i = 0; i < inputs.length; i++) {
-                    if(inputs[i].tagName !== "BUTTON") inputs[i].value = ''
-                    else inputs[i].disabled = false
-                }
+                if (!prodId) {
+                    problem("Новый товар добавлен в базу", eTarget)
+                } else { problem("Изменения сохранены в базу", eTarget) }
+                
+                // for (let i = 0; i < inputs.length; i++) {
+                //     if(inputs[i].tagName !== "BUTTON") inputs[i].value = ''
+                //     else inputs[i].disabled = false
+                // }
                 // Rest.getProductById(result.name)
                 // .then(json => {
                     // getNewProds(json)
@@ -89,7 +119,7 @@ export function setNewProduct(e, auth, prodId, newIndex) {
         })
     } else problem('', eTarget)
 
-    countSpec = 0
+    // countSpec = 0
     countColor = 0
 
     function fetchRest(newProduct, prodId, idToken) {

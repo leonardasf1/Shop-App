@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import './style.scss'
+import './style.css'
 import OrderProduct from './OrderProduct'
 import { handleOrder, setSum, listenForms } from './script'
 
@@ -65,7 +65,7 @@ export default function Order(props) {
                 </div>
                 <div className="textfield--float-label">
                     <span className="error"></span>
-                    <input type="tel" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" name="tel" id="tel"
+                    <input type="tel" name="tel" id="tel"
                         defaultValue={orderInfo.tel || props.auth.tel} />
                     <label>Номер мобильного телефона</label>
                 </div>

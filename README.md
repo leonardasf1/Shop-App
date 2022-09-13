@@ -1,24 +1,22 @@
 # Shop-App
 
-<a href="https://grunvald-shop.web.app/">grunvald-shop.web.app</a>
+[grunvald-shop.web.app](https://grunvald-shop.web.app/)
 
 online store with CRM
 
 react
 redux
 routing-sharp
-scss
 
 user panel:
-<ul>
-    <li>list of orders</li>
-</ul>
+- list of orders
 
 admin panel:
-<ul>
-    <li>add a new product</li>
-    <li>change an existing one</li>
-    <li>list of orders</li>
-    <li>search for orders by date, number, email, status</li>
-    <li>order processing</li>
-</ul>
+- add a new product
+- change an existing one
+- list of orders
+- search for orders by date, number, email, status
+- order processing
+
+npm run build
+firebase deploy

@@ -1,8 +1,8 @@
-
 .error {
     color: var(--red);
-    right: 0;
+    right: 16px;
     position: absolute;
+    top: 29px;
 }
  
 .block__content {
@@ -12,16 +12,14 @@
     box-shadow: 0 15px 30px 0 rgba(0,0,0,.1);
     border-radius: 4px;
     background: #fff;
-
-    a {
+}
+    .block__content a {
         color: #3d71bd;
         transition: color .15s ease-out;
-
-        &:hover {
+}
+        .block__content a:hover {
             color: #e00;
             text-shadow: none;
-        }
-    }
 }
 
 .form {
@@ -36,11 +34,9 @@
     .form { padding: 5px 0 }
 }
  
-.form__group {
-    h3 {
+.form__group h3 {
         text-align: center;
         font-weight: 400;
-    }
 }
  /*	.form__group .col-md-12::after {
          content: '';
@@ -60,8 +56,8 @@
 .form__comment {
     font: 13px/1.5em sans-serif;
     color: #999;
-
-    > button {
+}
+    .form__comment > button {
         width: 100%;
         height: 38px;
         border: none;
@@ -70,21 +66,19 @@
         font-size: 18px;
         cursor: pointer;
     }
-    > div {
+    .form__comment > div {
         padding: 10px 0;
-
-        &:first-of-type {
+}
+        .form__comment > div:first-of-type {
             text-align: center;
-        }
-    }
 }
 
 .textfield--float-label {
     padding-top: 15px;
     margin-bottom: 20px;
     position: relative;
-
-    input {
+}
+    .textfield--float-label input {
         width: 100%;
         height: 32px;
         border: none;
@@ -92,18 +86,16 @@
         margin-bottom: 30px;
         display: block;
         outline: 0;
-    
-        &:focus {
+}
+        .textfield--float-label input:focus {
             border-bottom: 2px solid #ffdb4d;
-
-            &~label {
+}
+            .textfield--float-label input:focus~label {
                 color:#2196F3;
                 font-size:12px;
                 line-height:15px;
-            }
-        }
     }
-    label {
+    .textfield--float-label label {
         position:absolute;
         top:0;
         color:rgba(0,0,0,.26);
@@ -111,7 +103,7 @@
         transition: all .2s ease-out;
         white-space: nowrap;
     }
-    select {
+    .textfield--float-label select {
         display: block;
         height: 32px;
         width: 100%;
@@ -119,5 +111,4 @@
         border: none;
         border-bottom: 1px solid rgba(0,0,0,.26);
         cursor: pointer;
-    }
 }

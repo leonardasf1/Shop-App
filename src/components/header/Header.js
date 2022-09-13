@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import CatalogBar from '../CatalogBar'
-import './style.scss'
+import './style.css'
 import { useDispatch } from 'react-redux'
 import { deleteAuth } from '../../redux/appReducer'
 import basket from '../../assets/basket-white.svg'

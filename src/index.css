@@ -1,8 +1,8 @@
-:root { //глобальные переменные
+:root {
   --main-color: #333e;
   --red: rgb(249, 91, 91);
-  // --red: #df4b41;
-  // f95b5b
+/*   --red: #df4b41;
+   f95b5b*/
 }
 
 * {
@@ -27,11 +27,11 @@ body {
 
 main {
   min-height: calc(100vh - 60px - 110px);
-  svg.loading {
+}
+  main svg.loading {
     position: fixed;
     left: calc(50vw - 50px);
     top: 200px;
-  }
 }
 
 .footer {
@@ -42,10 +42,9 @@ main {
   color: #fff;
   height: 110px;
   justify-content: center;
-  
-  > * {
+}
+  .footer > * {
     margin-right: 1rem;
-  }
 }
 
 textarea {
@@ -56,10 +55,9 @@ textarea {
   margin-bottom: 30px;
   display: block;
   outline: 0;
-
-  &:focus {
+}
+  textarea:focus {
       border-bottom: 2px solid #ffdb4d;
-  }
 }
 ul {
   margin: 0;
@@ -69,21 +67,20 @@ li {
 }
 h1 { font-weight: 400; }
 
-table {
-  tr:nth-child(odd) {
+table tr:nth-child(odd) {
     background: #0001;
-  }
 }
 button {
   border: none;
   opacity: 1;
   outline: none;
-
-  &:active, &:focus {
-    animation: linear .5s buyAnim;
-  }
 }
-select, input {
+  button:active,
+  button:focus {
+    animation: linear .5s buyAnim;
+}
+select,
+input {
   font-size: 16px;
 }
 

@@ -8,8 +8,8 @@ header {
     color: #fff;
     font-weight: 700;
     height: 60px;
-
-    > div {
+}
+header > div {
       background-color: var(--main-color);
       position: fixed;
       display: flex;
@@ -19,36 +19,32 @@ header {
       align-items: center;
       box-shadow: 0 5px 20px 0 #0005;
       z-index: 1;
-
-      .logo {
+}
+header > div .logo {
         z-index: 3;
       }
-      .logo, > div {
+header > div .logo,
+header > div > div {
         margin-right: 1rem;
         padding: 15px;
       }
-    }
-    
-    .btn:hover {
+header .btn:hover {
       opacity: .6;
-    }
 }
 
 .basket {
   display: flex;
   margin-right: 1rem;
-
-  .basket_count {
+}
+.basket .basket_count {
     margin-left: -7px;
-  }
 }
 
 .cd-main-nav-wrapper {
     margin-left: auto;
-
-    ul {
+}
+.cd-main-nav-wrapper ul {
       padding-inline-start: 0;
-    }
 }
 
 .cd-nav-trigger {
@@ -58,8 +54,8 @@ header {
     /* hide text */
     color: transparent;
     transform: translateX(0px);
-
-    span {
+}
+.cd-nav-trigger span {
       /* hamburger icon created in CSS */
       position: absolute;
       height: 2px;
@@ -70,8 +66,9 @@ header {
       margin-left: -10px;
       transition: background-color .3s;
       background-color: #fff;
-
-      &::before, &::after {
+}
+.cd-nav-trigger span::before,
+.cd-nav-trigger span::after {
         /* upper and lower lines of the menu icon */
         content: '';
         position: absolute;
@@ -81,24 +78,21 @@ header {
         transform: translateZ(0);
         transition: all 0.3s;
       }
-      &::before {
+.cd-nav-trigger span::before {
         transform: translateY(-6px);
       }
-      &::after {
+.cd-nav-trigger span::after {
         transform: translateY(6px);
-      }
-    }
 }
 
 .nav-is-visible .cd-nav-trigger span {
     background-color: #0000;
-
-    &::before {
+}
+.nav-is-visible .cd-nav-trigger span::before {
       transform: translateY(0) rotate(-45deg);
     }
-    &::after {
+.nav-is-visible .cd-nav-trigger span::after {
       transform: translateY(0) rotate(45deg);
-    }
 }
 
 @media only screen and (min-width: 800px) {
@@ -118,43 +112,41 @@ header {
     background: var(--main-color);
     transform: translateX(260px);
     transition: transform .3s;
-
-    li {
-      a {
+}
+      .cd-main-nav li a {
         display: block;
         padding: 21px 1.5em;
         border-bottom: 1px solid #fff2;
         transition: transform 0.3s, opacity 0.3s;
       }
-      ul {
+      .cd-main-nav li ul {
         position: absolute;
         top: 0;
-        // left: 0;
+         /*left: 0;*/
         width: 100%;
         transition: transform 0.3s;
         transform: translateX(260px);
       }
-    }
 
-    &.nav-is-visible {
+    .cd-main-nav.nav-is-visible {
       transform: translateX(0px);
     }
-  &.moves-out > li {
-    > a {
+  .cd-main-nav.moves-out > li > a {
       /* push the navigation items to the left - and lower down opacity - when secondary nav slides in */
       transform: translateX(-100%);
       opacity: 0;
     }
-    > ul {
+    .cd-main-nav.moves-out > li > ul {
       transform: translateX(0);
     }
-  }
-  .cd-subnav-trigger,
-  .go-back div {
+  .cd-main-nav .cd-subnav-trigger,
+  .cd-main-nav .go-back div {
     position: relative;
   }
-  .cd-subnav-trigger::before, .cd-subnav-trigger::after,
-  .go-back div::before, .go-back div::after {
+  .cd-main-nav .cd-subnav-trigger::before,
+  .cd-main-nav .cd-subnav-trigger::after,
+  .cd-main-nav .go-back div::before,
+  .cd-main-nav .go-back div::after {
     /* arrow icon in CSS */
     content: '';
     position: absolute;
@@ -165,34 +157,35 @@ header {
     width: 10px;
     background: #fffa;
   }
-  .cd-subnav-trigger::before,
-  .go-back div::before {
+  .cd-main-nav .cd-subnav-trigger::before,
+  .cd-main-nav .go-back div::before {
     transform: rotate(45deg);
   }
-  .cd-subnav-trigger::after,
-  .go-back div::after {
+  .cd-main-nav .cd-subnav-trigger::after,
+  .cd-main-nav .go-back div::after {
     transform: rotate(-45deg);
   }
-  .cd-subnav-trigger::before, .cd-subnav-trigger::after {
+  .cd-main-nav .cd-subnav-trigger::before,
+  .cd-main-nav .cd-subnav-trigger::after {
     /* arrow goes on the right side - children navigation */
     right: 20px;
     transform-origin: 9px 50%;
   }
-  .go-back div {
+  .cd-main-nav .go-back div {
     padding: 21px 3em;
     border-bottom: 1px solid #fff2;
     cursor: pointer;
   }
-  .go-back div::before, .go-back div::after {
+  .cd-main-nav .go-back div::before,
+  .cd-main-nav .go-back div::after {
     /* arrow goes on the left side - go back button */
     left: 15px;
     transform-origin: 1px 50%;
   }
-  .placeholder {
+  .cd-main-nav .placeholder {
     /* never visible or clickable- it is used to take up the same space as the .cd-subnav-trigger */
     display: none;
   }
-}
 
 @media only screen and (min-width: 800px) {
 
@@ -206,57 +199,53 @@ header {
       text-align: right;
       transform: translateX(0px);
       background-color: transparent;
-
-      li {
+  }
+      .cd-main-nav li {
         display: inline-block;
-        // height: 100%;
+         /*height: 100%;*/
         padding: 0 .4em;
-        
-        a {
-          // display: inline-block;
-          // padding: .8em;
+        }
+        .cd-main-nav li a {
+           /*display: inline-block;*/
+           /*padding: .8em;*/
           line-height: 1;
           border-bottom: none;
           /* Prevent .cd-subnav-trigger flicker is Safari */
           transform: translateZ(0);
           transition: opacity 0.2s;
-
-          // &:hover {
-          //   opacity: .6;
-          // }
+/*           .cd-main-nav li a:hover {
+             opacity: .6;
+           }*/
         }
-        ul {
+        .cd-main-nav li ul {
           width: max-content;
           background-color: var(--main-color);
           transform: rotateY(90deg);
           opacity: 0;
           transition: all .2s;
-
-          li {
+  }
+          .cd-main-nav li ul li {
             display: flex;
             border-bottom: 1px solid #fff2;
-          }
-        }
       }
-      .go-back {
+      .cd-main-nav .go-back {
         display: none;
       }
-      .cd-subnav-trigger {
+      .cd-main-nav .cd-subnav-trigger {
         z-index: 3;
         padding-right: 2.4em;
         padding-left: 1.1em;
-
-        &::before, &::after {
+  }
+        .cd-main-nav .cd-subnav-trigger::before,
+        .cd-main-nav .cd-subnav-trigger::after {
           right: 17px;
           /* change transform-origin to rotate the arrow */
           transform-origin: 50% 50%;
           transition: transform 0.3s, width 0.3s, right 0.3s;
         }
-        &::before {
+        .cd-main-nav .cd-subnav-trigger::before {
           right: 23px;
         }
-      }
-    }
 
     .cd-main-nav.moves-out > li > a {
       transform: translateX(0);
@@ -266,7 +255,8 @@ header {
       transform: rotateY(0deg) translateY(60px);
       opacity: 1;
     }
-    .cd-main-nav.moves-out .cd-subnav-trigger::before, .cd-main-nav.moves-out .cd-subnav-trigger::after {
+    .cd-main-nav.moves-out .cd-subnav-trigger::before,
+    .cd-main-nav.moves-out .cd-subnav-trigger::after {
       width: 14px;
       right: 17px;
     }
@@ -280,15 +270,14 @@ header {
       margin-right: 2rem;
     }
 }
-
 .searchForm {
   line-height: normal;
   z-index: 3;
-
-  form {
+}
+  .searchForm form {
     color: #fff;
-
-    > input {
+}
+    .searchForm form > input {
       padding: .5rem 10px .5rem 35px;
       background: #333;
       border-radius: 16px;
@@ -297,17 +286,14 @@ header {
       color: #fff;
       width: 0;
       transition: all .5s linear;
-
-      &::placeholder {
+}
+      .searchForm form > input::placeholder {
         color: #fff;
       }
-      &:focus {
+      .searchForm form > input:focus {
         width: 200px;
-      }
     }
-    > span {
+    .searchForm form > span {
       position: absolute;
       padding: 6px;
-    }
-  }
 }

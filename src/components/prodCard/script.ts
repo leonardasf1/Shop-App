@@ -122,6 +122,7 @@ export function setProdColor(
     } else e.style.borderColor = "#00adee"
 
     q('.color').innerText = color
+    q('.prodCard_block1_img > img').src = `${ product['img@' + colorIndex] }`
     q('.availableCount').innerText = ''
 
     q('.price').innerText =
