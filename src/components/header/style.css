@@ -95,7 +95,7 @@ header .btn:hover {
       transform: translateY(0) rotate(45deg);
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 920px) {
     .cd-nav-trigger {
       display: none;
     }
@@ -187,7 +187,7 @@ header .btn:hover {
     display: none;
   }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 920px) {
 
     .cd-main-nav {
       width: 100%;

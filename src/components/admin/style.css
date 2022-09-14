@@ -8,11 +8,12 @@
 		.product-form #form .textfield--float-label input {
 				margin-bottom: 15px;
 }
-
-.colorFieldList {
+.colorFieldList,
+.colorFieldList+button {
 	border: #0081 20px solid;
 	padding: 8px;
 	margin: 8px;
+	float: left;
 }
 .field-article,
 .field-brand,

@@ -2,6 +2,7 @@ import React from 'react'
 import { addField,
     addProdColor,
     setNewProduct } from './script'
+import { setColors } from '../prodCard/script'
 import './style.css'
 
 export default function Admin(props) {
@@ -38,6 +39,28 @@ export default function Admin(props) {
         }
         countSpec--
     })();
+    let countColor = 0
+
+    function addProdColor(e) {
+
+        e.preventDefault()
+        countColor ++
+
+        let ul = document.createElement('div')
+        ul.classList.add("colorFieldList")
+
+        e.target.parentNode.insertBefore(
+            ul, e.target
+        )
+        colorFieldList.map(i => 
+            e.target.previousElementSibling
+            .insertAdjacentHTML('beforeend', `
+            <div class="textfield--float-label">
+                <input type="text" defaultValue="">
+                <label>${i + '@' + countColor}</label>
+            </div>`)
+        )
+    }
 
     const formHTML = (
 <div className="product-form">
@@ -84,26 +107,27 @@ export default function Admin(props) {
                   <input type="text">
                   <label>spec${countSpec}</label>
                 </li>`)
-              }}>+</button>
+              }}>+ добавить характеристику</button>
             </ul>
         </div>
 
         <div>
-            Наличие цвета и размера:
-            <div className="colorFieldList">
-            {colorFieldList.map(i => 
+            <h3>Наличие цвета и размера:</h3> 
+            {setColors(savedProduct).map( (item, index) =>
+                
+            <div className="colorFieldList" key={index}>
+                {colorFieldList.map(i => 
                 <div className={"textfield--float-label field-"+i} key={i + '@0'}>
                     <input type="text"
                     defaultValue={
                         savedProduct !== undefined ?
-                        savedProduct[i + '@0'] : ''} />
-                    <label>{i + '@0'}</label>
+                        savedProduct[i + '@' + index] : ''} />
+                    <label>{i + '@' + (countColor = index)}</label>
                 </div>
                 )}
             </div>
-            <button onClick={(e) =>
-                addProdColor(e, colorFieldList, savedProduct)
-            }>+</button>
+            )}
+            <button onClick={(e) => addProdColor(e) }> + добавить цвет</button>
         </div>
 
         <button
@@ -128,3 +152,4 @@ export default function Admin(props) {
         </div>
     )
 }
+

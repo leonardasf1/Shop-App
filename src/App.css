@@ -25,7 +25,9 @@
       font-weight: 700;
     }
     .ProdList > div img {
-      padding: calc(60px - 2rem)
+      padding: calc(60px - 2rem);
+      height: 256px;
+      display: block;
     }
     .ProdList > div .divPrice {
       padding: .7rem;

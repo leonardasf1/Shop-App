@@ -32,7 +32,8 @@
 .prodCard_block1_info span {
           font-size: .8rem;
         }
-.prodCard_block1_info .divImg54 > * {
+.prodCard_block1_info .divImg54 > img {
+            /*display: inline-block;*/
             height: 54px;
             width: 54px;
             margin: 1rem;
